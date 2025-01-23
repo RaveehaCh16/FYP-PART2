@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#C8E6C9">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:text="Choose the Correct Season"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:background="@drawable/round_corners"
+        android:layout_marginBottom="20dp" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/spring"
+        android:scaleType="centerCrop"
+        android:contentDescription="Spring Image"
+        android:layout_below="@id/title"
+        android:layout_marginTop="5dp" />
+
+    <RadioGroup
+        android:id="@+id/group1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/image1"
+        android:layout_marginTop="5dp">
+        <RadioButton
+            android:id="@+id/radio_spring_1"
+            android:text="Spring"
+            android:layout_width="90dp"
+            android:layout_height="25dp" />
+        <RadioButton
+            android:id="@+id/radio_winter_1"
+            android:text="Winter"
+            android:layout_width="90dp"
+            android:layout_height="25dp"
+            />
+        <RadioButton
+            android:id="@+id/radio_autumn_1"
+            android:text="Autumn"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_summer_1"
+            android:text="Summer"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/autumn"
+        android:scaleType="centerCrop"
+        android:contentDescription="Autumn Image"
+        android:layout_below="@id/group1"
+        android:layout_marginTop="5dp" />
+
+    <RadioGroup
+        android:id="@+id/group2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/image2"
+        android:layout_marginTop="5dp">
+        <RadioButton
+            android:id="@+id/radio_spring_2"
+            android:text="Spring"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_winter_2"
+            android:text="Winter"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_autumn_2"
+            android:text="Autumn"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_summer_2"
+            android:text="Summer"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/image3"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/winter"
+        android:scaleType="centerCrop"
+        android:contentDescription="Winter Image"
+        android:layout_below="@id/group2"
+        android:layout_marginTop="5dp" />
+
+    <RadioGroup
+        android:id="@+id/group3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/image3"
+        android:layout_marginTop="5dp">
+        <RadioButton
+            android:id="@+id/radio_spring_3"
+            android:text="Spring"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_winter_3"
+            android:text="Winter"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_autumn_3"
+            android:text="Autumn"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_summer_3"
+            android:text="Summer"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/image4"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/summer"
+        android:scaleType="centerCrop"
+        android:contentDescription="Summer Image"
+        android:layout_below="@id/group3"
+        android:layout_marginTop="5dp" />
+
+    <RadioGroup
+        android:id="@+id/group4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/image4"
+        android:layout_marginTop="5dp">
+        <RadioButton
+            android:id="@+id/radio_spring_4"
+            android:text="Spring"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_winter_4"
+            android:text="Winter"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_autumn_4"
+            android:text="Autumn"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+        <RadioButton
+            android:id="@+id/radio_summer_4"
+            android:text="Summer"
+            android:layout_width="90dp"
+            android:layout_height="25dp"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:background="@drawable/round_corners"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:background="@drawable/round_corners"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

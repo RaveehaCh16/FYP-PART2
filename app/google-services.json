@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "254049161347",
+    "firebase_url": "https://insight-learn-1fea9-default-rtdb.firebaseio.com",
+    "project_id": "insight-learn-1fea9",
+    "storage_bucket": "insight-learn-1fea9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254049161347:android:011ebc7b2856be4a420bb6",
+        "android_client_info": {
+          "package_name": "com.example.insightlearn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxHr-RsLRY3px_MItUjxDUpXnA0txTyCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

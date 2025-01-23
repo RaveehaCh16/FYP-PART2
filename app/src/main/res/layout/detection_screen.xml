@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8E6A3">
+
+    <!-- Title Button -->
+    <Button
+        android:id="@+id/titleButton"
+        android:layout_width="199dp"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corners"
+        android:padding="10dp"
+        android:text="DETECTION"
+        android:textSize="33dp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <!-- Detection Button -->
+    <Button
+        android:id="@+id/dyslexiaButton"
+        android:layout_width="360dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/titleButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/round_form"
+        android:drawableTop="@drawable/dys_det"
+        android:paddingTop="20dp"
+        android:text="DYSLEXIA"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <!-- Therapy Button -->
+
+    <!-- Settings Icon -->
+    <Button
+        android:id="@+id/dysgraphiaButton"
+        android:layout_width="360dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/dyslexiaButton"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_form"
+        android:drawableTop="@drawable/dysg_det"
+        android:paddingTop="20dp"
+        android:text="DYSGRAPHIA"
+        android:textSize="40dp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#66AC54"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:drawableTop="@drawable/home" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="8"/>
+
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:drawableTop="@drawable/settings" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

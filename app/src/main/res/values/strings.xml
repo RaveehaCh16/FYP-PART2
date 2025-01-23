@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Insight Learn</string>
+    <!-- Button background color (Amber) -->
+    <color name="alphabetButtonBackground">#00000000</color>
+    <!-- Button text color (White) -->
+    <color name="alphabetButtonText">#FFFFFF</color>
+    <!-- Correct selection color (Green) -->
+    <color name="correctSelection">#00FF05</color>
+    <!-- Incorrect selection color (Red) -->
+    <color name="incorrectSelection">#F44336</color>
+</resources>

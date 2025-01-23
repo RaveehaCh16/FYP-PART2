@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <size
+        android:width="20dp"
+        android:height="20dp" /> <!-- Size of the thumb -->
+    <solid
+        android:color="#FFFFFF" /> <!-- Black color for the thumb -->
+    <corners
+        android:radius="10dp" /> <!-- Rounded edges for the thumb -->
+</shape>

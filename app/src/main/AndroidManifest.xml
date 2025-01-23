@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.InsightLearn"
+        tools:targetApi="31">
+
+        <activity android:name=".DetectionActivity"/>
+        <activity android:name=".dyslexiaResultActivity"/>
+        <activity android:name=".dyslexiaTestActivity"/>
+        <activity android:name=".dyslexiaTherapyResultActivity"/>
+        <activity android:name=".dyslexiaTherapyActivity"/>
+        <activity android:name=".graphDetectionActivity" />
+        <activity android:name=".graphDetectionResultActivity" />
+        <activity android:name=".graphTherapyActivity" />
+        <activity android:name=".graphTherapyResult_Activity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".TherapyActivity" />
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".ForgotPasswordActivity"/>
+        <activity android:name=".ImageActivity"/>
+        <activity android:name=".testgraph"/>
+        <activity android:name=".checkvicdeo"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
