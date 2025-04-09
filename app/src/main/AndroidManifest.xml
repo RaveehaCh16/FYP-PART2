@@ -21,19 +21,18 @@
         <activity android:name=".dyslexiaTestActivity"/>
         <activity android:name=".dyslexiaTherapyResultActivity"/>
         <activity android:name=".dyslexiaTherapyActivity"/>
-        <activity android:name=".graphDetectionActivity" />
-        <activity android:name=".graphDetectionResultActivity" />
-        <activity android:name=".graphTherapyActivity" />
-        <activity android:name=".graphTherapyResult_Activity" />
+        <activity android:name=".numtestgraph" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".TherapyActivity" />
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ForgotPasswordActivity"/>
-        <activity android:name=".ImageActivity"/>
+        <activity android:name=".alphabetmodelActivity"/>
+        <activity android:name=".numbermodelActivity"/>
         <activity android:name=".testgraph"/>
-        <activity android:name=".checkvicdeo"/>
+        <activity android:name=".graphia_detect"/>
+        <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -23,7 +23,7 @@ class TherapyActivity : AppCompatActivity() {
         }
 
         dysgraphiaButton.setOnClickListener {
-            val intent = Intent(this, checkvicdeo::class.java)
+            val intent = Intent(this, youtube_dysgraphia_therapy::class.java)
             startActivity(intent)
         }
 
