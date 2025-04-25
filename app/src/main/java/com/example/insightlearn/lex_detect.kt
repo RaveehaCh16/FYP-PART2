@@ -13,15 +13,15 @@ class lex_detect_types : AppCompatActivity() {
         val speechButton = findViewById<Button>(R.id.proButton)
         val memoryButton = findViewById<Button>(R.id.memButton)
 
-/*
+
         speechButton.setOnClickListener {
             val intent = Intent(this, SpeechTestActivity::class.java)
             startActivity(intent)
         }
-
-        memoryButton.setOnClickListener {
-            val intent = Intent(this, MemoryTestActivity::class.java)
-            startActivity(intent)
-        }*/
+        /*
+                memoryButton.setOnClickListener {
+                    val intent = Intent(this, MemoryTestActivity::class.java)
+                    startActivity(intent)
+                }*/
     }
 }

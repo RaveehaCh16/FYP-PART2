@@ -4,6 +4,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -33,6 +35,10 @@
         <activity android:name=".testgraph"/>
         <activity android:name=".graphia_detect"/>
         <activity android:name=".lex_detect_types"/>
+        <activity android:name=".SpeechTestActivity"/>
+        <activity android:name=".SpeechTest2Activity"/>
+        <activity android:name=".SpeechTest3Activity"/>
+        <activity android:name=".SpeechTest4Activity"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity
             android:name=".MainActivity"
