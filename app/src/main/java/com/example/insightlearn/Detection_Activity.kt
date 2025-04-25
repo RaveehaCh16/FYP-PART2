@@ -20,7 +20,7 @@ class DetectionActivity : AppCompatActivity() {
 
         // Navigate to Dyslexia Details
         dyslexiaButton.setOnClickListener {
-            val intent = Intent(this, dyslexiaTestActivity::class.java)
+            val intent = Intent(this, lex_detect_types::class.java)
             startActivity(intent)
         }
 

@@ -35,7 +35,13 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
-            loginUser(email, password)
+            val user = auth.currentUser
+            Toast.makeText(this, "Login Successful! Welcome ${user?.email}", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            /*
+            loginUser(email, password)*/
         }
 
         signUpButton.setOnClickListener {
@@ -50,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(email: String, password: String) {
+    /*private fun loginUser(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
             return
@@ -69,5 +75,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+
+
     }
+
+     */
 }

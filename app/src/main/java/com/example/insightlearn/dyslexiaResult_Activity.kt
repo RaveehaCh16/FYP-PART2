@@ -9,7 +9,6 @@ class dyslexiaResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lex_result_screen)
-
         val resultText: TextView = findViewById(R.id.resultText)
 
         // Retrieve the results from the intent
@@ -25,4 +24,3 @@ class dyslexiaResultActivity : AppCompatActivity() {
         """.trimIndent()
     }
 }
-

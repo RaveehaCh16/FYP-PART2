@@ -32,6 +32,7 @@
         <activity android:name=".numbermodelActivity"/>
         <activity android:name=".testgraph"/>
         <activity android:name=".graphia_detect"/>
+        <activity android:name=".lex_detect_types"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity
             android:name=".MainActivity"

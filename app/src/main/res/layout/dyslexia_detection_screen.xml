@@ -6,46 +6,45 @@
 
     <!-- Title Button -->
     <Button
-        android:id="@+id/graphiaButton"
+        android:id="@+id/lexButton"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners"
         android:padding="10dp"
-        android:text=" DYSGRAPHIA"
+        android:text=" DYSLEXIA"
         android:textSize="40dp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    <!-- Detection Button -->
+    <!-- Speech Testing Button -->
     <Button
-        android:id="@+id/alphaButton"
+        android:id="@+id/proButton"
         android:layout_width="360dp"
         android:layout_height="200dp"
-        android:layout_below="@id/graphiaButton"
+        android:layout_below="@id/lexButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="ALPHABET"
+        android:text="Speech"
         android:textColor="#000000"
         android:textSize="40dp"
         android:textStyle="bold" />
 
-    <!-- Therapy Button -->
+    <!-- Memory Testing Button -->
 
-    <!-- Settings Icon -->
     <Button
-        android:id="@+id/numButton"
+        android:id="@+id/memButton"
         android:layout_width="360dp"
         android:layout_height="200dp"
-        android:layout_below="@id/alphaButton"
+        android:layout_below="@id/proButton"
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="NUMBER"
+        android:text="MEMORY"
         android:textSize="40dp"
         android:textColor="#000000"
         android:textStyle="bold" />
@@ -80,8 +79,5 @@
             android:drawableTop="@drawable/settings" />
 
     </LinearLayout>
-
-
-
 
 </RelativeLayout>
