@@ -61,6 +61,8 @@ class SpeechTest2Activity : AppCompatActivity() {
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
+                // Increment the global count if the answer is correct
+                GlobalCounter.count += 1
             } else {
                 statusText.text = "❌ Wrong answer, try again."
             }

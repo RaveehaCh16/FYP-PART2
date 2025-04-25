@@ -9,7 +9,7 @@
         android:id="@+id/topLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Speak Sentence: \n \n (My Name is Ali)"
+        android:text="    Speak Sentence: \n \n (Welcome to the Class)"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -20,7 +20,7 @@
     <!-- Main content area -->
     <LinearLayout
         android:layout_below="@id/topLabel"
-        android:layout_above="@+id/test4Button"
+        android:layout_above="@+id/resultButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -63,10 +63,10 @@
 
     <!-- Bottom Center "Test2" Button -->
     <Button
-        android:id="@+id/test4Button"
-        android:layout_width="105dp"
+        android:id="@+id/resultButton"
+        android:layout_width="150dp"
         android:layout_height="55dp"
-        android:text="Test4"
+        android:text="Result"
         android:textSize="25sp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"

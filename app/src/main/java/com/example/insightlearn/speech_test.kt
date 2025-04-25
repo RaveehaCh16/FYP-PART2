@@ -21,7 +21,6 @@ class SpeechTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.speech)
-
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
         val speakButton = findViewById<Button>(R.id.speakButton)
@@ -61,6 +60,9 @@ class SpeechTestActivity : AppCompatActivity() {
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
+                // Increment the global count if the answer is correct
+                GlobalCounter.count += 1
+
             } else {
                 statusText.text = "❌ Wrong answer, try again."
             }
