@@ -28,8 +28,8 @@
         <com.example.insightlearn.DrawingView
             android:id="@+id/drawing"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
             android:background="#FFFFFF" />
         <!-- SeekBar for adjusting thickness -->
 
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corners"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Done" />
 
         <Button
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corners"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Result" />
 
 

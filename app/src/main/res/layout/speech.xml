@@ -44,9 +44,8 @@
             android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Speech will appear here"
+            android:text="                         "
             android:layout_marginTop="16dp"
-            android:background="@drawable/round_corners"
             android:padding="12dp"
             android:textSize="20sp" />
 
@@ -54,7 +53,7 @@
             android:id="@+id/statusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status will be shown here"
+            android:text="                             "
             android:layout_marginTop="16dp"
             android:textStyle="bold"
             android:textSize="20sp"

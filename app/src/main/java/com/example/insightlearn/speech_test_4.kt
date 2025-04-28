@@ -15,7 +15,7 @@ class SpeechTest4Activity : AppCompatActivity() {
     private lateinit var statusText: TextView
 
     private val SPEECH_REQUEST_CODE = 1
-    private val output1 = "Welcome to the class"   // Correct answer
+    private val output1 = "welcome to the class"   // Correct answer
     private var output2 = ""        // User's spoken answer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +31,8 @@ class SpeechTest4Activity : AppCompatActivity() {
             startSpeechToText()
         }
 
-        // Set OnClickListener for test2Button to go to SpeechTest2Activity
         result.setOnClickListener {
-            val intent = Intent(this, lex_speech::class.java)  // Create an intent to navigate to SpeechTest2Activity
+            val intent = Intent(this, lex_speech_result::class.java)  // Create an intent to navigate to SpeechTest2Activity
             startActivity(intent)  // Start the new activity
         }
     }

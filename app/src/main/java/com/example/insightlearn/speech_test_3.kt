@@ -15,7 +15,7 @@ class SpeechTest3Activity : AppCompatActivity() {
     private lateinit var statusText: TextView
 
     private val SPEECH_REQUEST_CODE = 1
-    private val output1 = "My Name is Ali"   // Correct answer
+    private val output1 = "my name is abc"   // Correct answer
     private var output2 = ""        // User's spoken answer
 
     override fun onCreate(savedInstanceState: Bundle?) {

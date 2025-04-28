@@ -330,7 +330,7 @@ public class numbermodelActivity extends AppCompatActivity {
     private Bitmap loadImageFromInternalStorage() {
         try {
             // Define the image file path
-            File filePath = new File(getFilesDir(), "DrawingFolder/drawing.png");
+            File filePath = new File(getFilesDir(), "MyDrawingFolder/drawing.png");
 
             // Check if the file exists
             if (filePath.exists()) {

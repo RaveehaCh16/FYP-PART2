@@ -7,31 +7,31 @@
     <!-- Title Button -->
     <Button
         android:id="@+id/titleButton"
-        android:layout_width="199dp"
+        android:layout_width="310dp"
         android:layout_height="68dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners"
         android:padding="10dp"
         android:text="DETECTION"
-        android:textSize="33dp"
+        android:textSize="33sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
     <!-- Detection Button -->
     <Button
         android:id="@+id/dyslexiaButton"
-        android:layout_width="360dp"
-        android:layout_height="250dp"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
         android:layout_below="@id/titleButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/round_form"
         android:drawableTop="@drawable/dys_det"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:text="DYSLEXIA"
         android:textColor="#000000"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <!-- Therapy Button -->
@@ -39,16 +39,16 @@
     <!-- Settings Icon -->
     <Button
         android:id="@+id/dysgraphiaButton"
-        android:layout_width="360dp"
-        android:layout_height="250dp"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
         android:layout_below="@id/dyslexiaButton"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_form"
         android:drawableTop="@drawable/dysg_det"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:text="DYSGRAPHIA"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 

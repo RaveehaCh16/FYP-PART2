@@ -7,31 +7,31 @@
     <!-- Title Button -->
     <Button
         android:id="@+id/titleButton"
-        android:layout_width="199dp"
+        android:layout_width="250dp"
         android:layout_height="68dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners"
         android:padding="10dp"
-        android:text="THERAPY"
-        android:textSize="33dp"
+        android:text="@string/therapy"
+        android:textSize="33sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
     <!-- Detection Button -->
     <Button
         android:id="@+id/dyslexiaButton"
-        android:layout_width="360dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="230dp"
         android:layout_below="@id/titleButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/round_form"
         android:drawableTop="@drawable/dyslexia"
         android:paddingTop="20dp"
-        android:text="DYSLEXIA"
+        android:text="@string/dyslexia"
         android:textColor="#000000"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <!-- Therapy Button -->
@@ -39,16 +39,16 @@
     <!-- Settings Icon -->
     <Button
         android:id="@+id/dysgraphiaButton"
-        android:layout_width="360dp"
+        android:layout_width="300dp"
         android:layout_height="250dp"
         android:layout_below="@id/dyslexiaButton"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_form"
         android:drawableTop="@drawable/dysgraphia"
-        android:paddingTop="20dp"
-        android:text="DYSGRAPHIA"
-        android:textSize="40dp"
+        android:paddingTop="5dp"
+        android:text="@string/dysgraphia"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 

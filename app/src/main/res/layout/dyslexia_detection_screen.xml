@@ -8,44 +8,44 @@
     <Button
         android:id="@+id/lexButton"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners"
         android:padding="10dp"
-        android:text=" DYSLEXIA"
-        android:textSize="40dp"
+        android:text="@string/dyslexia"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
     <!-- Speech Testing Button -->
     <Button
         android:id="@+id/proButton"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_below="@id/lexButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="Speech"
+        android:text="@string/speech"
         android:textColor="#000000"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <!-- Memory Testing Button -->
 
     <Button
         android:id="@+id/memButton"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_below="@id/proButton"
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="MEMORY"
-        android:textSize="40dp"
+        android:text="@string/memory"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 

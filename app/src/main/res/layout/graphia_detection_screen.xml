@@ -8,29 +8,29 @@
     <Button
         android:id="@+id/graphiaButton"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners"
         android:padding="10dp"
-        android:text=" DYSGRAPHIA"
-        android:textSize="40dp"
+        android:text="@string/dysgraphia"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
     <!-- Detection Button -->
     <Button
         android:id="@+id/alphaButton"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_below="@id/graphiaButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="ALPHABET"
+        android:text="@string/alphabet"
         android:textColor="#000000"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <!-- Therapy Button -->
@@ -38,15 +38,15 @@
     <!-- Settings Icon -->
     <Button
         android:id="@+id/numButton"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_below="@id/alphaButton"
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_form"
         android:paddingTop="20dp"
-        android:text="NUMBER"
-        android:textSize="40dp"
+        android:text="@string/number"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 

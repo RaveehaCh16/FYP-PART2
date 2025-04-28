@@ -13,10 +13,13 @@ class SpeechTest2Activity : AppCompatActivity() {
 
     private lateinit var resultText: TextView
     private lateinit var statusText: TextView
+    private lateinit var topLabel: TextView // Reference to the TextView displaying the word
 
     private val SPEECH_REQUEST_CODE = 1
-    private val output1 = "Bat"   // Correct answer
-    private var output2 = ""        // User's spoken answer
+    private var output1 = ""  // Correct answer, will be set randomly
+    private var output2 = ""  // User's spoken answer
+
+    private val wordList = listOf("dad", "bib", "did", "bid", "pod", "pad", "tap", "dap") // List of words
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,17 +27,22 @@ class SpeechTest2Activity : AppCompatActivity() {
 
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
+        topLabel = findViewById(R.id.topLabel)
+
         val speakButton = findViewById<Button>(R.id.speakButton)
-        val test3Button = findViewById<Button>(R.id.test3)  // Reference to test2Button
+        val test3Button = findViewById<Button>(R.id.test3)
+
+        // Set a random word from the list as output1 and display it in the XML layout
+        output1 = wordList.random() // Randomly select a word
+        topLabel.text = "Speak word: $output1" // Update the TextView with the selected word
 
         speakButton.setOnClickListener {
             startSpeechToText()
         }
 
-        // Set OnClickListener for test2Button to go to SpeechTest2Activity
         test3Button.setOnClickListener {
-            val intent = Intent(this, SpeechTest3Activity::class.java)  // Create an intent to navigate to SpeechTest2Activity
-            startActivity(intent)  // Start the new activity
+            val intent = Intent(this, SpeechTest3Activity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -61,7 +69,6 @@ class SpeechTest2Activity : AppCompatActivity() {
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
-                // Increment the global count if the answer is correct
                 GlobalCounter.count += 1
             } else {
                 statusText.text = "❌ Wrong answer, try again."
@@ -69,5 +76,3 @@ class SpeechTest2Activity : AppCompatActivity() {
         }
     }
 }
-
-

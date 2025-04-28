@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Insight Learn</string>
+    <string name="speech">Speech</string>
+    <string name="memory">MEMORY</string>
+    <string name="dyslexia">DYSLEXIA</string>
+    <string name="dysgraphia">DYSGRAPHIA</string>
+    <string name="alphabet">ALPHABET</string>
+    <string name="number">NUMBER</string>
+    <string name="detection">DETECTION</string>
+    <string name="insight_learn">INSIGHT LEARN</string>
+    <string name="therapy">THERAPY</string>
     <!-- Button background color (Amber) -->
     <color name="alphabetButtonBackground">#00000000</color>
     <!-- Button text color (White) -->
