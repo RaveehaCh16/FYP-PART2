@@ -25,10 +25,10 @@ class SpeechTest4Activity : AppCompatActivity() {
 
     // List of phrases to be displayed randomly
     private val phrases = listOf(
-        "there was a cat that ate a rat, and after that sat on a yellow mat.",
-        "The cat found a ball,it kicked the ball and ran fast",
-        "A puppy saw a frog at the pond,the frog jumped",
-        "Mia had a small goldfish,it swam round and round all day",
+        "there was a cat that ate a rat and after that sat on a yellow mat",
+        "the cat found a ball it kicked the ball and ran fast",
+        "a puppy saw a frog at the pond,the frog jumped",
+        "mia had a small goldfish it swam round and round all day",
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
