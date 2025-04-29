@@ -40,7 +40,7 @@ class SpeechTest4Activity : AppCompatActivity() {
         val speakButton = findViewById<Button>(R.id.speakButton)
         val test4Button = findViewById<Button>(R.id.resultButton)
         val topLabel = findViewById<TextView>(R.id.topLabel)  // Add this line to reference topLabel
-
+        konfettiView = findViewById(R.id.konfettiView)
         // Set a random phrase from the list when the activity starts
         output1 = phrases.random() // Randomly choose a phrase from the list
         topLabel.text = "Speak this sentence: \n\n$output1"    // ✅ Update topLabel, not resultText

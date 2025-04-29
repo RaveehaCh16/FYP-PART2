@@ -33,6 +33,7 @@ class SpeechTest2Activity : AppCompatActivity() {
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
         topLabel = findViewById(R.id.topLabel)
+        konfettiView = findViewById(R.id.konfettiView)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
         val test3Button = findViewById<Button>(R.id.test3)
