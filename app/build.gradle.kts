@@ -47,9 +47,12 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth:23.1.0")
+    implementation("nl.dionsegijn:konfetti-xml:2.0.2")
+
 
     // Firebase Realtime Database (already included, but ensure the version is correct)
     implementation("com.google.firebase:firebase-database:21.0.0")

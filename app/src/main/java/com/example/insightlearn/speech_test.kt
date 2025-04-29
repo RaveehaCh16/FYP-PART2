@@ -7,19 +7,25 @@ import android.speech.RecognizerIntent
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import nl.dionsegijn.konfetti.xml.KonfettiView
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.core.emitter.EmitterConfig
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class SpeechTestActivity : AppCompatActivity() {
 
     private lateinit var resultText: TextView
     private lateinit var statusText: TextView
-    private lateinit var topLabel: TextView // Reference to the TextView displaying the word
+    private lateinit var topLabel: TextView
+    private lateinit var konfettiView: KonfettiView
 
     private val SPEECH_REQUEST_CODE = 1
-    private var output1 = ""  // Correct answer, will be set randomly
-    private var output2 = ""  // User's spoken answer
+    private var output1 = ""
+    private var output2 = ""
 
-    private val wordList = listOf("rat", "cat", "dog", "bat", "hat", "mat") // List of words
+    private val wordList = listOf("rat", "cat", "dog", "bat", "hat", "mat")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +34,13 @@ class SpeechTestActivity : AppCompatActivity() {
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
         topLabel = findViewById(R.id.topLabel)
+        konfettiView = findViewById(R.id.konfettiView)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
         val test2Button = findViewById<Button>(R.id.test2Button)
 
-        // Set a random word from the list as output1 and display it in the XML layout
-        output1 = wordList.random() // Randomly select a word
-        topLabel.text = "Speak word: $output1" // Update the TextView with the selected word
+        output1 = wordList.random()
+        topLabel.text = "Speak word: $output1"
 
         speakButton.setOnClickListener {
             startSpeechToText()
@@ -70,9 +76,25 @@ class SpeechTestActivity : AppCompatActivity() {
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
                 GlobalCounter.count += 1
+
+                celebrate()  // 🎉 Trigger celebration
             } else {
                 statusText.text = "❌ Wrong answer, try again."
             }
         }
+    }
+
+    private fun celebrate() {
+        val emitterConfig = Emitter(duration = 2, TimeUnit.SECONDS).perSecond(100)
+        val party = Party(
+            speed = 0f,
+            maxSpeed = 30f,
+            damping = 0.9f,
+            spread = 360,
+            colors = listOf(0xfff44336.toInt(), 0xff4caf50.toInt(), 0xff2196f3.toInt()),
+            emitter = emitterConfig,
+            position = nl.dionsegijn.konfetti.core.Position.Relative(0.5, 0.3)
+        )
+        konfettiView.start(party)
     }
 }

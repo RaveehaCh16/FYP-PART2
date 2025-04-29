@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8E6A3">
+
+    <!-- Top Label to display random phrase -->
+    <TextView
+        android:id="@+id/topLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speak this sentence"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Result Text (what user spoke) -->
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Result appears here"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_below="@id/topLabel"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#66AC54"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/homebutton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@drawable/home"
+            android:contentDescription="Home" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="8"/>
+
+        <Button
+            android:id="@+id/settingsbutton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@drawable/settings"
+            android:contentDescription="Settings" />
+    </LinearLayout>
+
+</RelativeLayout>
