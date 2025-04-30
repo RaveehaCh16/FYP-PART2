@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -17,13 +18,16 @@ class SpeechTest3Activity : AppCompatActivity() {
 
     private lateinit var resultText: TextView
     private lateinit var statusText: TextView
+    private lateinit var konfettiView: KonfettiView
+    private lateinit var topLabel: TextView
 
     private val SPEECH_REQUEST_CODE = 1
-    private var output1 = ""   // Correct answer (random phrase)
-    private var output2 = ""   // User's spoken answer
-    private lateinit var konfettiView: KonfettiView
+    private var output1 = ""   // Correct phrase
+    private var output2 = ""   // Spoken phrase
 
-    // List of phrases to be displayed randomly
+    private var bestCorrectCount = 0
+    private var countedAlready = false
+
     private val phrases = listOf(
         "the bell rings loud",
         "shiny stars shining in the sky",
@@ -42,37 +46,56 @@ class SpeechTest3Activity : AppCompatActivity() {
 
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
-        val speakButton = findViewById<Button>(R.id.speakButton)
-        val test4Button = findViewById<Button>(R.id.test4Button)
-        val topLabel = findViewById<TextView>(R.id.topLabel)  // Add this line to reference topLabel
+        topLabel = findViewById(R.id.topLabel)
         konfettiView = findViewById(R.id.konfettiView)
 
-        // Set a random phrase from the list when the activity starts
-        output1 = phrases.random() // Randomly choose a phrase from the list
-        topLabel.text = "Speak this sentence: \n\n$output1"    // ✅ Update topLabel, not resultText
+        val speakButton = findViewById<Button>(R.id.speakButton)
+        val test4Button = findViewById<Button>(R.id.test4Button)
+        val homeButton = findViewById<Button>(R.id.homebutton)
+        val settingsButton = findViewById<Button>(R.id.settingsbutton)
+
+        // Set random phrase
+        output1 = phrases.random()
+        topLabel.text = "Speak this sentence: \n\n$output1"
 
         speakButton.setOnClickListener {
             startSpeechToText()
         }
 
         test4Button.setOnClickListener {
+            // Add to global counters only once, on Next
+            GlobalCounter.count += bestCorrectCount
+            // Total only added once, when first counted
+            if (!countedAlready) {
+                GlobalTotal.count += output1.split(" ").size
+                countedAlready = true
+            }
+
             val intent = Intent(this, SpeechTest4Activity::class.java)
+            startActivity(intent)
+        }
+
+        homeButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun startSpeechToText() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
 
         try {
             startActivityForResult(intent, SPEECH_REQUEST_CODE)
         } catch (e: Exception) {
-            resultText.text = "Speech recognition is not supported on this device."
+            Toast.makeText(this, "Speech recognition not supported.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -82,16 +105,79 @@ class SpeechTest3Activity : AppCompatActivity() {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
+            if (output2.isBlank()) {
+                statusText.text = "❌ No speech detected. Please try again."
+                resultText.text = ""
+                return
+            }
 
-            resultText.text = "You said: $output2"
+            val words1 = output1.lowercase(Locale.ROOT).split(" ")
+            val words2 = output2.split(" ")
 
-            if (output2 == output1.lowercase(Locale.ROOT)) {
+            if (words2.size < words1.size / 2) {
+                statusText.text = "❌ Too few words detected. Please speak the full sentence."
+                resultText.text = ""
+                return
+            }
+
+            val coloredResult = android.text.SpannableStringBuilder()
+            var correctCount = 0
+            var addedMissingOnce = false
+
+            for (i in words1.indices) {
+                val word = if (i < words2.size) words2[i] else ""
+                val expected = words1[i]
+                val start = coloredResult.length
+
+                when {
+                    word == expected -> {
+                        correctCount++
+                        coloredResult.append(word)
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.BLACK),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                    word.isNotBlank() -> {
+                        coloredResult.append(word)
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                    !addedMissingOnce -> {
+                        coloredResult.append("?")
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        addedMissingOnce = true
+                    }
+                    else -> {
+                        // Skip extra missing words
+                    }
+                }
+
+                if (i != words1.size - 1) {
+                    coloredResult.append(" ")
+                }
+            }
+
+            resultText.text = coloredResult
+
+            // Only keep best result
+            if (correctCount > bestCorrectCount) {
+                bestCorrectCount = correctCount
+            }
+
+            if (correctCount == words1.size) {
                 statusText.text = "✅ Test Passed!"
-                // Increment the global count if the answer is correct
-                GlobalCounter.count += 1
                 celebrate()
             } else {
-                statusText.text = "❌ Wrong answer, try again."
+                statusText.text = "❌ Some words were incorrect. Try again."
             }
         }
     }

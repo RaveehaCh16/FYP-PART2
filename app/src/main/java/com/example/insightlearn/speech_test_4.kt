@@ -17,18 +17,21 @@ class SpeechTest4Activity : AppCompatActivity() {
 
     private lateinit var resultText: TextView
     private lateinit var statusText: TextView
+    private lateinit var konfettiView: KonfettiView
+    private lateinit var topLabel: TextView
 
     private val SPEECH_REQUEST_CODE = 1
-    private var output1 = ""   // Correct answer (random phrase)
-    private var output2 = ""   // User's spoken answer
-    private lateinit var konfettiView: KonfettiView
+    private var output1 = ""   // Correct phrase
+    private var output2 = ""   // Spoken phrase
 
-    // List of phrases to be displayed randomly
+    private var bestCorrectCount = 0
+    private var countedAlready = false
+
     private val phrases = listOf(
-        "there was a cat that ate a rat and after that sat on a yellow mat",
-        "the cat found a ball it kicked the ball and ran fast",
-        "a puppy saw a frog at the pond,the frog jumped",
-        "mia had a small goldfish it swam round and round all day",
+        "there was a cat that eat a rat and after that sat on a yellow mat",
+        "the cat found a ball it kick the ball and ran fast",
+        "a puppy saw a frog at the pond the frog jumps",
+        "john had a small goldfish it swims round and round all day"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,19 +40,27 @@ class SpeechTest4Activity : AppCompatActivity() {
 
         resultText = findViewById(R.id.resultTextView)
         statusText = findViewById(R.id.statusTextView)
+        konfettiView = findViewById(R.id.konfettiView)
+        topLabel = findViewById(R.id.topLabel)
+
         val speakButton = findViewById<Button>(R.id.speakButton)
         val test4Button = findViewById<Button>(R.id.resultButton)
-        val topLabel = findViewById<TextView>(R.id.topLabel)  // Add this line to reference topLabel
-        konfettiView = findViewById(R.id.konfettiView)
-        // Set a random phrase from the list when the activity starts
-        output1 = phrases.random() // Randomly choose a phrase from the list
-        topLabel.text = "Speak this sentence: \n\n$output1"    // ✅ Update topLabel, not resultText
+
+        output1 = phrases.random()
+        topLabel.text = "Speak this sentence: \n\n$output1"
 
         speakButton.setOnClickListener {
             startSpeechToText()
         }
 
         test4Button.setOnClickListener {
+            // Update global counters only once, when navigating away
+            GlobalCounter.count += bestCorrectCount
+            if (!countedAlready) {
+                GlobalTotal.count += output1.split(" ").size
+                countedAlready = true
+            }
+
             val intent = Intent(this, lex_speech_result::class.java)
             startActivity(intent)
         }
@@ -74,18 +85,80 @@ class SpeechTest4Activity : AppCompatActivity() {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
 
-            resultText.text = "You said: $output2"
+            if (output2.isBlank()) {
+                statusText.text = "❌ No speech detected. Please try again."
+                resultText.text = ""
+                return
+            }
 
-            if (output2 == output1.lowercase(Locale.ROOT)) {
+            val words1 = output1.lowercase(Locale.ROOT).split(" ")
+            val words2 = output2.lowercase(Locale.ROOT).split(" ")
+
+            if (words2.size < words1.size / 2) {
+                statusText.text = "❌ Input too short. Try saying the full sentence."
+                resultText.text = ""
+                return
+            }
+
+            val coloredResult = android.text.SpannableStringBuilder()
+            var correctCount = 0
+            var addedMissingOnce = false
+
+            for (i in words1.indices) {
+                val word = if (i < words2.size) words2[i] else ""
+                val expected = words1[i]
+                val start = coloredResult.length
+
+                when {
+                    word == expected -> {
+                        correctCount++
+                        coloredResult.append(word)
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.BLACK),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                    word.isNotBlank() -> {
+                        coloredResult.append(word)
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                    !addedMissingOnce -> {
+                        coloredResult.append("?")
+                        coloredResult.setSpan(
+                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            start, coloredResult.length,
+                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        addedMissingOnce = true
+                    }
+                }
+
+                if (i != words1.size - 1) {
+                    coloredResult.append(" ")
+                }
+            }
+
+            resultText.text = coloredResult
+
+            // Track best attempt
+            if (correctCount > bestCorrectCount) {
+                bestCorrectCount = correctCount
+            }
+
+            if (correctCount == words1.size) {
                 statusText.text = "✅ Test Passed!"
-                // Increment the global count if the answer is correct
-                GlobalCounter.count += 1
                 celebrate()
             } else {
-                statusText.text = "❌ Wrong answer, try again."
+                statusText.text = "❌ Some words were incorrect. Try again."
             }
         }
     }
+
     private fun celebrate() {
         val emitterConfig = Emitter(duration = 2, TimeUnit.SECONDS).perSecond(100)
         val party = Party(

@@ -4,20 +4,17 @@
     android:layout_height="match_parent"
     android:background="#A8E6A3">
 
-    <!-- Top Center Label -->
     <TextView
         android:id="@+id/topLabel"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:text=" Speak Sentence: \n \n Pink flowers bloom"
+        android:text="Speak Sentence:\n\nPink flowers bloom"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true" />
 
-
-    <!-- Main content area -->
     <LinearLayout
         android:layout_below="@id/topLabel"
         android:layout_above="@+id/test4Button"
@@ -59,7 +56,7 @@
             android:textSize="20sp"
             android:textColor="#000000" />
     </LinearLayout>
-    <!-- Confetti celebration view (added this!) -->
+
     <nl.dionsegijn.konfetti.xml.KonfettiView
         android:id="@+id/konfettiView"
         android:layout_width="match_parent"
@@ -67,7 +64,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <!-- Bottom Center "Test2" Button -->
     <Button
         android:id="@+id/test4Button"
         android:layout_width="105dp"
@@ -79,8 +75,8 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_corners" />
 
-    <!-- Bottom Bar -->
     <LinearLayout
+        android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#66AC54"
@@ -109,5 +105,4 @@
             android:background="#00000000"
             android:drawableTop="@drawable/settings" />
     </LinearLayout>
-
 </RelativeLayout>

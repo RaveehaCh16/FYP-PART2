@@ -52,6 +52,8 @@ dependencies {
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation("nl.dionsegijn:konfetti-xml:2.0.2")
+    implementation ("com.airbnb.android:lottie:5.0.3")
+
 
 
     // Firebase Realtime Database (already included, but ensure the version is correct)

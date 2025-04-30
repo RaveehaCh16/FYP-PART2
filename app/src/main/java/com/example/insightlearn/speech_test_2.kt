@@ -72,6 +72,7 @@ class SpeechTest2Activity : AppCompatActivity() {
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
 
             resultText.text = "You said: $output2"
+            GlobalTotal.count += 1
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
