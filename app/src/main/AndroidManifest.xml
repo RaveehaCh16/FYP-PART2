@@ -20,7 +20,9 @@
 
         <activity android:name=".DetectionActivity"/>
         <activity android:name=".dyslexiaResultActivity"/>
-        <activity android:name=".dyslexiaTestActivity"/>
+        <activity android:name=".DyslexiaTestActivity" />
+        <activity android:name=".DyslexiaTest2Activity" />
+        <activity android:name=".DyslexiaTest3Activity"/>
         <activity android:name=".dyslexiaTherapyResultActivity"/>
         <activity android:name=".dyslexiaTherapyActivity"/>
         <activity android:name=".numtestgraph" />

@@ -18,10 +18,10 @@ class lex_detect_types : AppCompatActivity() {
             val intent = Intent(this, SpeechTestActivity::class.java)
             startActivity(intent)
         }
-        /*
+
                 memoryButton.setOnClickListener {
-                    val intent = Intent(this, MemoryTestActivity::class.java)
+                    val intent = Intent(this, DyslexiaTestActivity::class.java)
                     startActivity(intent)
-                }*/
+                }
     }
 }
