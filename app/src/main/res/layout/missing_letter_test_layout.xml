@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8E6A3">
+
+    <!-- ========== Test Title Section ========== -->
+    <TextView
+        android:id="@+id/testTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST 2"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/round_corners"
+        android:padding="10dp" />
+
+    <!-- ========== Instruction Section ========== -->
+    <TextView
+        android:id="@+id/instructionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill in the blanks"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_below="@id/testTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <!-- ========== Question (e.g. C _ T) ========== -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C _ T "
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/instructionText"
+        android:layout_marginTop="30dp" />
+
+    <!-- ========== Option Buttons Grid ========== -->
+    <GridLayout
+        android:id="@+id/optionsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionText"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:columnCount="2"
+        android:alignmentMode="alignMargins"
+        android:layout_centerHorizontal="true" />
+
+    <!-- ========== Navigation Buttons ========== -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:background="@drawable/round_corners"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="80dp" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:background="@drawable/round_corners"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp" />
+
+    <!-- ========== Bottom Icons (Home & Settings) ========== -->
+    <ImageView
+        android:id="@+id/homeIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp" />
+
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>
