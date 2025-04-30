@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A6E4A6">
@@ -8,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:text="WELCOME TO"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -51,4 +52,20 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:stateListAnimator="@null" />
+
+    <!-- Lottie Animation View -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/helloAnimation"
+        android:layout_width="250dp"
+        android:layout_height="400dp"
+        android:layout_below="@id/getStartedButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:translationY="800dp"
+        android:scaleType="fitXY"
+        app:lottie_rawRes="@raw/welcome"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="false" />
+
+
 </RelativeLayout>
