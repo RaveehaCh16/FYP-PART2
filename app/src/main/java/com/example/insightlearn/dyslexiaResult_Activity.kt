@@ -13,18 +13,28 @@ class dyslexiaResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lex_result_screen)
 
-        val totalOccurrences = intent.getIntExtra("TOTAL_OCCURRENCES", 0)
-        val correctSelections = intent.getIntExtra("CORRECT_SELECTIONS", 0)
-        val incorrectSelections = intent.getIntExtra("INCORRECT_SELECTIONS", 0)
+        // Try to get both kinds of keys depending on which test it is
+        val totalAttempts = intent.getIntExtra("TOTAL_OCCURRENCES", -1)
+        val correctAnswers = intent.getIntExtra("CORRECT_SELECTIONS", -1)
+        val incorrectAnswers = intent.getIntExtra("INCORRECT_SELECTIONS", -1)
+
+        val totalAttemptsAlt = intent.getIntExtra("TOTAL_ATTEMPTS", -1)
+        val correctAnswersAlt = intent.getIntExtra("CORRECT_ANSWERS", -1)
+        val incorrectAnswersAlt = intent.getIntExtra("INCORRECT_ANSWERS", -1)
+
         val currentTest = intent.getIntExtra("CURRENT_TEST", 1)
 
         val resultText = findViewById<TextView>(R.id.resultText)
         val nextTestButton = findViewById<Button>(R.id.nextTestButton)
 
+        val finalTotal = if (totalAttempts != -1) totalAttempts else totalAttemptsAlt
+        val finalCorrect = if (correctAnswers != -1) correctAnswers else correctAnswersAlt
+        val finalIncorrect = if (incorrectAnswers != -1) incorrectAnswers else incorrectAnswersAlt
+
         val resultMessage = """
-            Total Attempts: $totalOccurrences
-            Correct Answers: $correctSelections
-            Incorrect Answers: $incorrectSelections
+            Total Attempts: $finalTotal
+            Correct Answers: $finalCorrect
+            Incorrect Answers: $finalIncorrect
         """.trimIndent()
 
         resultText.text = resultMessage
@@ -49,7 +59,7 @@ class dyslexiaResultActivity : AppCompatActivity() {
                 }
             }
             3 -> {
-                nextTestButton.visibility = View.GONE // No further tests
+                nextTestButton.visibility = View.GONE // No further tests after Test 3
             }
         }
     }

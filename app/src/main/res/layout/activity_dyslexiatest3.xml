@@ -1,119 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8DF8E"
-    android:padding="16dp">
+    android:background="#A4D6A7"
+    tools:context=".DyslexiaTest3Activity">
 
-    <TextView
+    <Button
         android:id="@+id/testTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEST 3"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:background="#5C9E31"
-        android:padding="12dp"
-        android:textColor="@android:color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentTop="true"
-        android:elevation="4dp" />
+        android:textSize="20sp"
+        android:background="@drawable/round_corners"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/instructionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Match the columns"
+        android:text="Match the similar words"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_below="@id/testTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:textColor="@android:color/black" />
-
-    <FrameLayout
-        android:id="@+id/columnArea"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_below="@id/instructionText"
-        android:layout_above="@+id/bottomNav"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#C7F2A4"
-        android:clipChildren="false">
-
-        <com.example.insightlearn.DrawingView
-            android:id="@+id/drawingArea"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/leftColumn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/darker_gray" />
-
-            <LinearLayout
-                android:id="@+id/rightColumn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical" />
-        </LinearLayout>
-    </FrameLayout>
+        android:layout_marginTop="12dp" />
 
     <LinearLayout
-        android:id="@+id/bottomNav"
+        android:id="@+id/columnContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="#5C9E31"
         android:gravity="center"
-        android:padding="8dp">
+        android:padding="16dp"
+        android:layout_below="@id/instructionText"
+        android:layout_marginTop="16dp">
 
-        <ImageButton
-            android:id="@+id/homeBtn"
+        <LinearLayout
+            android:id="@+id/leftColumn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal" />
 
-            android:background="@android:color/transparent"
-            android:contentDescription="Home" />
+        <LinearLayout
+            android:id="@+id/rightColumn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
 
-        <ImageButton
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:weightSum="2">
+
+        <Button
             android:id="@+id/backBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="←BACK"
+            android:textSize="18sp"
+            android:background="@drawable/round_corners" />
 
-            android:background="@android:color/transparent"
-            android:contentDescription="Back" />
-
-        <ImageButton
+        <Button
             android:id="@+id/nextBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-
-            android:background="@android:color/transparent"
-            android:contentDescription="Next" />
+            android:layout_height="wrap_content"
+            android:text="NEXT→"
+            android:textSize="18sp"
+            android:background="@drawable/round_corners" />
     </LinearLayout>
+
 </RelativeLayout>

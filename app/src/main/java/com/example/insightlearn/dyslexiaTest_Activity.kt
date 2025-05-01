@@ -16,24 +16,21 @@ class DyslexiaTestActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
 
     private var targetLetter: Char = 'b'
-    private var totalOccurrences = 0
-    private var correctSelections = 0
-    private var incorrectSelections = 0
+    private var totalAttempts = 0
+    private var correctAnswers = 0
+    private var incorrectAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lex_detection_screen)
 
-        // Initialize views
         instructionText = findViewById(R.id.instructionText)
         gridLayout = findViewById(R.id.gridLayout)
         nextButton = findViewById(R.id.nextButton)
         val backButton: Button = findViewById(R.id.backButton)
 
-        // Generate the test
         generateTest()
 
-        // Handle navigation
         nextButton.setOnClickListener {
             navigateToResultScreen()
         }
@@ -45,60 +42,52 @@ class DyslexiaTestActivity : AppCompatActivity() {
 
     private fun generateTest() {
         // Reset counts
-        totalOccurrences = 0
-        correctSelections = 0
-        incorrectSelections = 0
+        totalAttempts = 0
+        correctAnswers = 0
+        incorrectAnswers = 0
 
-        // Randomly select the target letter
         targetLetter = listOf('b', 'd', 'p', 'q').random()
         instructionText.text = "Select all the $targetLetter's"
 
-        // Generate random letters for the grid
         val letters = MutableList(20) {
-            val randomLetter = listOf('b', 'd', 'p', 'q').random()
-            if (randomLetter == targetLetter) totalOccurrences++
-            randomLetter
+            listOf('b', 'd', 'p', 'q').random()
         }
 
-        // Ensure at least one target letter is present
-        if (totalOccurrences == 0) {
+        // Ensure at least one target letter
+        if (!letters.contains(targetLetter)) {
             val randomIndex = Random.nextInt(letters.size)
             letters[randomIndex] = targetLetter
-            totalOccurrences++
         }
 
-        // Populate the grid layout
         gridLayout.removeAllViews()
         for (letter in letters) {
             val button = Button(this).apply {
                 text = letter.toString()
-
-                // Using ContextCompat to get color resource
-                setBackgroundColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.alphabetButtonBackground)) // Custom background color
-                setTextColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.alphabetButtonText)) // Custom text color
-
+                setBackgroundColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.alphabetButtonBackground))
+                setTextColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.alphabetButtonText))
                 textSize = 18f
                 isAllCaps = false
             }
-// Set GridLayout.LayoutParams to control button position
+
             val params = GridLayout.LayoutParams().apply {
                 width = GridLayout.LayoutParams.WRAP_CONTENT
                 height = GridLayout.LayoutParams.WRAP_CONTENT
-                // Optionally, set column and row span for buttons (if required)
-                columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1) // Occupy one column
-                rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1) // Occupy one row
-                setMargins(-15, 20, 8, -18) // Set margins between buttons
+                columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1)
+                rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1)
+                setMargins(-15, 20, 8, -18)
             }
 
             button.layoutParams = params
             button.setOnClickListener {
+                totalAttempts++ // ✅ Always increase on any click
+
                 if (letter == targetLetter) {
-                    correctSelections++
-                    button.isEnabled = false // Disable after selection
-                    button.setBackgroundColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.correctSelection)) // Set incorrect selection color
+                    correctAnswers++
+                    button.isEnabled = false
+                    button.setBackgroundColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.correctSelection))
                 } else {
-                    incorrectSelections++
-                    button.isEnabled = false // Disable after selection
+                    incorrectAnswers++
+                    button.isEnabled = false
                     button.setBackgroundColor(ContextCompat.getColor(this@DyslexiaTestActivity, R.color.incorrectSelection))
                 }
             }
@@ -107,15 +96,12 @@ class DyslexiaTestActivity : AppCompatActivity() {
     }
 
     private fun navigateToResultScreen() {
-        // Pass the results to the result screen
         val intent = Intent(this, dyslexiaResultActivity::class.java).apply {
-            putExtra("TOTAL_OCCURRENCES", totalOccurrences)
-            putExtra("CORRECT_SELECTIONS", correctSelections)
-            putExtra("INCORRECT_SELECTIONS", incorrectSelections)
+            putExtra("TOTAL_ATTEMPTS", totalAttempts)
+            putExtra("CORRECT_ANSWERS", correctAnswers)
+            putExtra("INCORRECT_ANSWERS", incorrectAnswers)
             putExtra("CURRENT_TEST", 1)
         }
-
         startActivity(intent)
     }
 }
-

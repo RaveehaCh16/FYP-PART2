@@ -6,6 +6,7 @@
     <string name="dysgraphia">DYSGRAPHIA</string>
     <string name="alphabet">ALPHABET</string>
     <string name="number">NUMBER</string>
+    <string name="next_button_description">Next</string>
     <string name="detection">DETECTION</string>
     <string name="insight_learn">INSIGHT LEARN</string>
     <string name="therapy">THERAPY</string>
