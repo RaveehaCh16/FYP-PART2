@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         // Animate from bottom to top slowly
         helloAnimation.animate()
             .translationY(0f)
-            .setDuration(2000) // slower movement
+            .setDuration(500) // slower movement
             .start()
 
         // Start Lottie animation
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         helloAnimation.translationY = 800f
         helloAnimation.animate()
             .translationY(0f)
-            .setDuration(2500)
+            .setDuration(2000)
             .start()
 
         helloAnimation.playAnimation()
