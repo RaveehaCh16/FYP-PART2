@@ -17,42 +17,52 @@
         android:background="@drawable/round_corners"
         android:padding="10dp" />
 
-    <!-- ========== Instruction Section ========== -->
-    <TextView
-        android:id="@+id/instructionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fill in the blanks"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_below="@id/testTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
-
-    <!-- ========== Question (e.g. C _ T) ========== -->
-    <TextView
-        android:id="@+id/questionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C _ T "
-        android:textSize="24sp"
-        android:textColor="#000000"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/instructionText"
-        android:layout_marginTop="30dp" />
-
-    <!-- ========== Option Buttons Grid ========== -->
-    <GridLayout
-        android:id="@+id/optionsLayout"
+    <!-- ========== Center Content Container ========== -->
+    <LinearLayout
+        android:id="@+id/centerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/questionText"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:columnCount="2"
-        android:alignmentMode="alignMargins"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/testTitle"
+        android:layout_above="@id/backButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- ========== Instruction Section ========== -->
+        <TextView
+            android:id="@+id/instructionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fill in the blanks"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- ========== Question ========== -->
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C _ T"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- ========== Option Buttons Grid ========== -->
+        <GridLayout
+            android:id="@+id/optionsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins"
+            android:rowCount="2"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp" />
+    </LinearLayout>
 
     <!-- ========== Navigation Buttons ========== -->
     <Button

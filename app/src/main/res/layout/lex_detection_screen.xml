@@ -12,7 +12,7 @@
 
         <!-- Test Title -->
 
-        <Button
+        <TextView
             android:id="@+id/testButton"
             android:layout_width="199dp"
             android:layout_height="68dp"

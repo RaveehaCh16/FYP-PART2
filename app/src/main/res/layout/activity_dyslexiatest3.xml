@@ -7,7 +7,7 @@
     android:background="#A4D6A7"
     tools:context=".DyslexiaTest3Activity">
 
-    <Button
+    <TextView
         android:id="@+id/testTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
