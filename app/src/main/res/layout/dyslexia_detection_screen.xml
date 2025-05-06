@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A8E6A3">
 
-    <!-- Title Button -->
+
+    <!-- Buttons and other UI go here -->
     <Button
         android:id="@+id/lexButton"
         android:layout_width="300dp"
@@ -18,7 +20,6 @@
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    <!-- Speech Testing Button -->
     <Button
         android:id="@+id/proButton"
         android:layout_width="300dp"
@@ -32,8 +33,6 @@
         android:textColor="#000000"
         android:textSize="40sp"
         android:textStyle="bold" />
-
-    <!-- Memory Testing Button -->
 
     <Button
         android:id="@+id/memButton"
@@ -77,7 +76,6 @@
             android:layout_weight="1"
             android:background="#00000000"
             android:drawableTop="@drawable/settings" />
-
     </LinearLayout>
 
 </RelativeLayout>
