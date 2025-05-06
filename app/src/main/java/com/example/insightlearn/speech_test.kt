@@ -4,13 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import nl.dionsegijn.konfetti.xml.KonfettiView
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.core.emitter.EmitterConfig
+import nl.dionsegijn.konfetti.xml.KonfettiView
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -20,6 +21,7 @@ class SpeechTestActivity : AppCompatActivity() {
     private lateinit var statusText: TextView
     private lateinit var topLabel: TextView
     private lateinit var konfettiView: KonfettiView
+    private lateinit var learnButton: Button
 
     private val SPEECH_REQUEST_CODE = 1
     private var output1 = ""
@@ -37,19 +39,41 @@ class SpeechTestActivity : AppCompatActivity() {
         konfettiView = findViewById(R.id.konfettiView)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
-        val test2Button = findViewById<Button>(R.id.test2Button)
+        val nextButton = findViewById<Button>(R.id.nextButton)
+        val backButton = findViewById<Button>(R.id.backButton)
+        learnButton = findViewById(R.id.learnPronunciationButton)
 
-        output1 = wordList.random()
+        // Retain the same word unless it's a fresh start
+        output1 = savedInstanceState?.getString("word")
+            ?: intent.getStringExtra("word")
+                    ?: wordList.random()
+
         topLabel.text = "Speak word: $output1"
 
         speakButton.setOnClickListener {
             startSpeechToText()
         }
 
-        test2Button.setOnClickListener {
+        nextButton.setOnClickListener {
             val intent = Intent(this, SpeechTest2Activity::class.java)
             startActivity(intent)
         }
+
+        learnButton.setOnClickListener {
+            val intent = Intent(this, PronunciationActivity::class.java)
+            intent.putExtra("word", output1)
+            startActivity(intent)
+        }
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, lex_detect_types::class.java) // Replace with your actual home screen class
+            startActivity(intent)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("word", output1)
     }
 
     private fun startSpeechToText() {
@@ -67,6 +91,12 @@ class SpeechTestActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            // Returned from PronunciationActivity — keep the word unchanged
+            topLabel.text = "Speak word: $output1"
+            return
+        }
+
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
@@ -76,11 +106,11 @@ class SpeechTestActivity : AppCompatActivity() {
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
-                GlobalCounter.count += 1
-
-                celebrate()  // 🎉 Trigger celebration
+                learnButton.visibility = View.GONE
+                celebrate()
             } else {
                 statusText.text = "❌ Wrong answer, try again."
+                learnButton.visibility = View.VISIBLE
             }
         }
     }
