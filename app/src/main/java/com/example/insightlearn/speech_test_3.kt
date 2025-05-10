@@ -4,6 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -18,14 +22,14 @@ class SpeechTest3Activity : AppCompatActivity() {
 
     private lateinit var resultText: TextView
     private lateinit var statusText: TextView
-    private lateinit var konfettiView: KonfettiView
     private lateinit var topLabel: TextView
+    private lateinit var konfettiView: KonfettiView
+    private lateinit var learnButton: Button
 
     private val SPEECH_REQUEST_CODE = 1
-    private var output1 = ""   // Correct phrase
-    private var output2 = ""   // Spoken phrase
-
-    private var bestCorrectCount = 0
+    private var output1 = ""
+    private var output2 = ""
+    private var correctCountInCurrentAttempt = 0 // Variable to hold the current attempt's correct words count
     private var countedAlready = false
 
     private val phrases = listOf(
@@ -48,24 +52,24 @@ class SpeechTest3Activity : AppCompatActivity() {
         statusText = findViewById(R.id.statusTextView)
         topLabel = findViewById(R.id.topLabel)
         konfettiView = findViewById(R.id.konfettiView)
+        learnButton = findViewById(R.id.learnPronunciationButton)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
-        val test4Button = findViewById<Button>(R.id.test4Button)
         val homeButton = findViewById<Button>(R.id.homebutton)
         val settingsButton = findViewById<Button>(R.id.settingsbutton)
+        val backButton = findViewById<Button>(R.id.backButton)
+        val nextButton = findViewById<Button>(R.id.nextButton)
 
-        // Set random phrase
-        output1 = phrases.random()
-        topLabel.text = "Speak this sentence: \n\n$output1"
-
-        speakButton.setOnClickListener {
-            startSpeechToText()
+        backButton.setOnClickListener {
+            // Navigate to SpeechTest2Activity
+            val intent = Intent(this, SpeechTest2Activity::class.java)
+            startActivity(intent)
+            finish()
         }
 
-        test4Button.setOnClickListener {
-            // Add to global counters only once, on Next
-            GlobalCounter.count += bestCorrectCount
-            // Total only added once, when first counted
+        nextButton.setOnClickListener {
+            // Add the current attempt's correct words to the global counter
+            GlobalCounter.count += correctCountInCurrentAttempt
             if (!countedAlready) {
                 GlobalTotal.count += output1.split(" ").size
                 countedAlready = true
@@ -73,6 +77,24 @@ class SpeechTest3Activity : AppCompatActivity() {
 
             val intent = Intent(this, SpeechTest4Activity::class.java)
             startActivity(intent)
+            finish()
+        }
+
+        // Retain sentence if coming back from learning
+        output1 = savedInstanceState?.getString("phrase")
+            ?: intent.getStringExtra("phrase")
+                    ?: phrases.random()
+
+        topLabel.text = "Speak this sentence:\n\n$output1"
+
+        speakButton.setOnClickListener {
+            startSpeechToText()
+        }
+
+        learnButton.setOnClickListener {
+            val intent = Intent(this, PronunciationActivity::class.java)
+            intent.putExtra("word", output1)
+            startActivityForResult(intent, 100)
         }
 
         homeButton.setOnClickListener {
@@ -87,11 +109,15 @@ class SpeechTest3Activity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("phrase", output1)
+    }
+
     private fun startSpeechToText() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-
         try {
             startActivityForResult(intent, SPEECH_REQUEST_CODE)
         } catch (e: Exception) {
@@ -102,9 +128,15 @@ class SpeechTest3Activity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            topLabel.text = "Speak this sentence:\n\n$output1"
+            return
+        }
+
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
+
             if (output2.isBlank()) {
                 statusText.text = "❌ No speech detected. Please try again."
                 resultText.text = ""
@@ -120,7 +152,7 @@ class SpeechTest3Activity : AppCompatActivity() {
                 return
             }
 
-            val coloredResult = android.text.SpannableStringBuilder()
+            val coloredResult = SpannableStringBuilder()
             var correctCount = 0
             var addedMissingOnce = false
 
@@ -134,30 +166,27 @@ class SpeechTest3Activity : AppCompatActivity() {
                         correctCount++
                         coloredResult.append(word)
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.BLACK),
+                            ForegroundColorSpan(android.graphics.Color.BLACK),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     }
                     word.isNotBlank() -> {
                         coloredResult.append(word)
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            ForegroundColorSpan(android.graphics.Color.RED),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     }
                     !addedMissingOnce -> {
                         coloredResult.append("?")
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            ForegroundColorSpan(android.graphics.Color.RED),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                         addedMissingOnce = true
-                    }
-                    else -> {
-                        // Skip extra missing words
                     }
                 }
 
@@ -167,17 +196,15 @@ class SpeechTest3Activity : AppCompatActivity() {
             }
 
             resultText.text = coloredResult
-
-            // Only keep best result
-            if (correctCount > bestCorrectCount) {
-                bestCorrectCount = correctCount
-            }
+            correctCountInCurrentAttempt = correctCount // Store the correct word count for the current attempt
 
             if (correctCount == words1.size) {
                 statusText.text = "✅ Test Passed!"
+                learnButton.visibility = View.GONE
                 celebrate()
             } else {
                 statusText.text = "❌ Some words were incorrect. Try again."
+                learnButton.visibility = View.VISIBLE
             }
         }
     }

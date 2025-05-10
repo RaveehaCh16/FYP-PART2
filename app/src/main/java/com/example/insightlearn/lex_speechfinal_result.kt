@@ -1,6 +1,8 @@
 package com.example.insightlearn
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
@@ -14,6 +16,10 @@ class lex_speech_result : AppCompatActivity() {
         // Find the resultTextView and Lottie animation view
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
         val celebrationAnimation = findViewById<LottieAnimationView>(R.id.celebrationAnimation)
+
+        // Find buttons for navigation
+        val homeButton = findViewById<Button>(R.id.home)
+        val settingsButton = findViewById<Button>(R.id.settings)
 
         // Check if GlobalTotal.count is not zero to avoid division by zero
         if (GlobalTotal.count > 0) {
@@ -47,6 +53,18 @@ class lex_speech_result : AppCompatActivity() {
         // After displaying the result, reset both counters to zero
         GlobalCounter.count = 0
         GlobalTotal.count = 0
+
+        // Navigate to Home Screen
+        homeButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Navigate to Settings Screen
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun celebrate(celebrationAnimation: LottieAnimationView) {

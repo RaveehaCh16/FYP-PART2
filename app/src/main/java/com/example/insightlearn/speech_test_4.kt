@@ -4,8 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -19,12 +24,14 @@ class SpeechTest4Activity : AppCompatActivity() {
     private lateinit var statusText: TextView
     private lateinit var konfettiView: KonfettiView
     private lateinit var topLabel: TextView
+    private lateinit var learnButton: Button
 
     private val SPEECH_REQUEST_CODE = 1
-    private var output1 = ""   // Correct phrase
-    private var output2 = ""   // Spoken phrase
+    private var output1 = ""
+    private var output2 = ""
 
-    private var bestCorrectCount = 0
+    // Replaced bestCorrectCount with latestCorrectCount
+    private var latestCorrectCount = 0
     private var countedAlready = false
 
     private val phrases = listOf(
@@ -42,28 +49,58 @@ class SpeechTest4Activity : AppCompatActivity() {
         statusText = findViewById(R.id.statusTextView)
         konfettiView = findViewById(R.id.konfettiView)
         topLabel = findViewById(R.id.topLabel)
+        learnButton = findViewById(R.id.learnPronunciationButton)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
-        val test4Button = findViewById<Button>(R.id.resultButton)
+        val backButton = findViewById<Button>(R.id.backButton)
+        val nextButton = findViewById<Button>(R.id.nextButton)
+        val homeButton = findViewById<Button>(R.id.homebutton)
+        val settingsButton = findViewById<Button>(R.id.settingsbutton)
 
-        output1 = phrases.random()
-        topLabel.text = "Speak this sentence: \n\n$output1"
+        output1 = savedInstanceState?.getString("output1") ?: intent.getStringExtra("phrase")
+                ?: phrases.random()
 
-        speakButton.setOnClickListener {
-            startSpeechToText()
+        topLabel.text = "Speak this sentence:\n\n$output1"
+
+        speakButton.setOnClickListener { startSpeechToText() }
+
+        learnButton.setOnClickListener {
+            val intent = Intent(this, PronunciationActivity::class.java)
+            intent.putExtra("word", output1)
+            startActivityForResult(intent, 100)
         }
 
-        test4Button.setOnClickListener {
-            // Update global counters only once, when navigating away
-            GlobalCounter.count += bestCorrectCount
+        backButton.setOnClickListener {
+            val intent = Intent(this, SpeechTest3Activity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        nextButton.setOnClickListener {
+            // Add the latestCorrectCount to GlobalCounter when 'Next' is pressed
+            GlobalCounter.count += latestCorrectCount
             if (!countedAlready) {
                 GlobalTotal.count += output1.split(" ").size
                 countedAlready = true
             }
-
             val intent = Intent(this, lex_speech_result::class.java)
             startActivity(intent)
+            finish()
         }
+
+        homeButton.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
+        settingsButton.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("output1", output1)
     }
 
     private fun startSpeechToText() {
@@ -74,12 +111,17 @@ class SpeechTest4Activity : AppCompatActivity() {
         try {
             startActivityForResult(intent, SPEECH_REQUEST_CODE)
         } catch (e: Exception) {
-            resultText.text = "Speech recognition is not supported on this device."
+            Toast.makeText(this, "Speech recognition not supported.", Toast.LENGTH_LONG).show()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            topLabel.text = "Speak this sentence:\n\n$output1"
+            return
+        }
 
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
@@ -95,12 +137,13 @@ class SpeechTest4Activity : AppCompatActivity() {
             val words2 = output2.lowercase(Locale.ROOT).split(" ")
 
             if (words2.size < words1.size / 2) {
-                statusText.text = "❌ Input too short. Try saying the full sentence."
+                statusText.text = "❌ Too few words detected. Please speak the full sentence."
                 resultText.text = ""
+                learnButton.visibility = View.VISIBLE
                 return
             }
 
-            val coloredResult = android.text.SpannableStringBuilder()
+            val coloredResult = SpannableStringBuilder()
             var correctCount = 0
             var addedMissingOnce = false
 
@@ -114,47 +157,44 @@ class SpeechTest4Activity : AppCompatActivity() {
                         correctCount++
                         coloredResult.append(word)
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.BLACK),
+                            ForegroundColorSpan(android.graphics.Color.BLACK),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     }
                     word.isNotBlank() -> {
                         coloredResult.append(word)
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            ForegroundColorSpan(android.graphics.Color.RED),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     }
                     !addedMissingOnce -> {
                         coloredResult.append("?")
                         coloredResult.setSpan(
-                            android.text.style.ForegroundColorSpan(android.graphics.Color.RED),
+                            ForegroundColorSpan(android.graphics.Color.RED),
                             start, coloredResult.length,
-                            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                         addedMissingOnce = true
                     }
                 }
 
-                if (i != words1.size - 1) {
-                    coloredResult.append(" ")
-                }
+                if (i != words1.size - 1) coloredResult.append(" ")
             }
 
             resultText.text = coloredResult
-
-            // Track best attempt
-            if (correctCount > bestCorrectCount) {
-                bestCorrectCount = correctCount
-            }
+            // Update latestCorrectCount with the current attempt's correct count
+            latestCorrectCount = correctCount
 
             if (correctCount == words1.size) {
                 statusText.text = "✅ Test Passed!"
+                learnButton.visibility = View.GONE
                 celebrate()
             } else {
                 statusText.text = "❌ Some words were incorrect. Try again."
+                learnButton.visibility = View.VISIBLE
             }
         }
     }
