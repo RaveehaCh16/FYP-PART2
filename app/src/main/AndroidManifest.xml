@@ -24,6 +24,7 @@
         <activity android:name=".DyslexiaTest2Activity" />
         <activity android:name=".DyslexiaTest3Activity"/>
         <activity android:name=".dyslexiaTherapyResultActivity"/>
+        <activity android:name=".PronunciationActivity"/>
         <activity android:name=".dyslexiaTherapyActivity"/>
         <activity android:name=".numtestgraph" />
         <activity android:name=".HomeActivity" />
