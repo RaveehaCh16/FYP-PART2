@@ -17,20 +17,11 @@ class MainActivity : AppCompatActivity() {
         val getStartedButton: Button = findViewById(R.id.getStartedButton)
         helloAnimation = findViewById(R.id.helloAnimation)
 
-        // Scale the animation
+        // Optional: Scale the animation (remove if not needed)
         helloAnimation.scaleX = 1.5f
         helloAnimation.scaleY = 1.5f
 
-        // Start the animation from off-screen
-        helloAnimation.translationY = 800f
-
-        // Animate from bottom to top slowly
-        helloAnimation.animate()
-            .translationY(0f)
-            .setDuration(500) // slower movement
-            .start()
-
-        // Start Lottie animation
+        // Start Lottie animation immediately
         helloAnimation.playAnimation()
 
         getStartedButton.setOnClickListener {
@@ -42,13 +33,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        // Reset and re-animate when returning to screen
-        helloAnimation.translationY = 800f
-        helloAnimation.animate()
-            .translationY(0f)
-            .setDuration(2000)
-            .start()
-
+        // Optional: Restart animation when activity resumes
+        // If you don't need it to restart onResume, you can remove the next line
         helloAnimation.playAnimation()
     }
 }
