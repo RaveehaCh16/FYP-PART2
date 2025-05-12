@@ -4,17 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import com.example.insightlearn.R
 
-class GameScreenActivity : AppCompatActivity() {
+
+class GameRuleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.game_screen)
+        setContentView(R.layout.game_rules)
 
         // Handle Start Button Click
-        val startButton = findViewById<LottieAnimationView>(R.id.startButtonAnimation)
-        startButton.setOnClickListener {
-            val intent = Intent(this, GameRuleActivity::class.java)
+        val goButton = findViewById<LottieAnimationView>(R.id.goButtonAnimation)
+        goButton.setOnClickListener {
+            val intent = Intent(this, SpeechBingoActivity::class.java)
             startActivity(intent)
         }
     }

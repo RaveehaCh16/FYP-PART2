@@ -45,6 +45,7 @@
         <activity android:name=".SpeechTest4Activity"/>
         <activity android:name=".lex_speech_result"/>
         <activity android:name=".GameScreenActivity"/>
+        <activity android:name=".GameRuleActivity"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity
             android:name=".MainActivity"
