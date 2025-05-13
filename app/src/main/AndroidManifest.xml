@@ -39,10 +39,13 @@
         <activity android:name=".graphia_detect"/>
         <activity android:name=".lex_detect_types"/>
         <activity android:name=".SpeechTestActivity"/>
+        <activity android:name=".SpeechBingoActivity"/>
         <activity android:name=".SpeechTest2Activity"/>
         <activity android:name=".SpeechTest3Activity"/>
         <activity android:name=".SpeechTest4Activity"/>
         <activity android:name=".lex_speech_result"/>
+        <activity android:name=".GameScreenActivity"/>
+        <activity android:name=".GameRuleActivity"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity
             android:name=".MainActivity"

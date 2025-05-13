@@ -18,7 +18,7 @@ class TherapyActivity : AppCompatActivity() {
 
         // Set onClick listeners for buttons
         dyslexiaButton.setOnClickListener {
-            val intent = Intent(this, dyslexiaTherapyActivity::class.java)
+            val intent = Intent(this, GameScreenActivity ::class.java)
             startActivity(intent)
         }
 
