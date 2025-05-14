@@ -54,8 +54,6 @@ class SpeechTest4Activity : AppCompatActivity() {
         val speakButton = findViewById<Button>(R.id.speakButton)
         val backButton = findViewById<Button>(R.id.backButton)
         val nextButton = findViewById<Button>(R.id.nextButton)
-        val homeButton = findViewById<Button>(R.id.homebutton)
-        val settingsButton = findViewById<Button>(R.id.settingsbutton)
 
         output1 = savedInstanceState?.getString("output1") ?: intent.getStringExtra("phrase")
                 ?: phrases.random()
@@ -88,14 +86,6 @@ class SpeechTest4Activity : AppCompatActivity() {
             finish()
         }
 
-        homeButton.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
-
-        settingsButton.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

@@ -55,8 +55,6 @@ class SpeechTest3Activity : AppCompatActivity() {
         learnButton = findViewById(R.id.learnPronunciationButton)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
-        val homeButton = findViewById<Button>(R.id.homebutton)
-        val settingsButton = findViewById<Button>(R.id.settingsbutton)
         val backButton = findViewById<Button>(R.id.backButton)
         val nextButton = findViewById<Button>(R.id.nextButton)
 
@@ -95,17 +93,6 @@ class SpeechTest3Activity : AppCompatActivity() {
             val intent = Intent(this, PronunciationActivity::class.java)
             intent.putExtra("word", output1)
             startActivityForResult(intent, 100)
-        }
-
-        homeButton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        settingsButton.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
         }
     }
 
