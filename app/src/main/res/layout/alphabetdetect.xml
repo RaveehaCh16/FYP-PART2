@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/screenback">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A8E6A3"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
@@ -43,29 +43,34 @@
             android:thumb="@drawable/custom_seekbar_thumb"
             android:layout_marginBottom="50dp" />
 
-        <Button
-            android:id="@+id/clearButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/round_corners"
-            android:text="Clear Drawing" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:weightSum="2">
 
-        <Button
-            android:id="@+id/doneButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners"
-            android:layout_marginTop="5dp"
-            android:text="Done" />
+            <Button
+                android:id="@+id/clearButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_3d_round"
+                android:text="Clear Drawing" />
 
-        <Button
-            android:id="@+id/resultButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners"
-            android:layout_marginTop="5dp"
-            android:text="Result" />
+            <Button
+                android:id="@+id/resultButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_3d_round"
+                android:text="Result" />
+        </LinearLayout>
+
 
 
     </LinearLayout>
