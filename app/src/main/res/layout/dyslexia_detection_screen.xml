@@ -3,32 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8E6A3">
-
-
-    <!-- Buttons and other UI go here -->
-    <Button
-        android:id="@+id/lexButton"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_corners"
-        android:padding="10dp"
-        android:text="@string/dyslexia"
-        android:textSize="40sp"
-        android:textColor="#000000"
-        android:textStyle="bold" />
+    android:background="@drawable/speech_memory">
 
     <Button
         android:id="@+id/proButton"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/lexButton"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/round_form"
-        android:paddingTop="20dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/button_3d_round"
+        android:paddingTop="10dp"
         android:text="@string/speech"
         android:textColor="#000000"
         android:textSize="40sp"
@@ -36,46 +20,16 @@
 
     <Button
         android:id="@+id/memButton"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
         android:layout_below="@id/proButton"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/round_form"
+        android:background="@drawable/button_3d_round"
         android:paddingTop="20dp"
         android:text="@string/memory"
         android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#66AC54"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
-
-        <Button
-            android:id="@+id/homebutton"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:drawableTop="@drawable/home" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="8"/>
-
-        <Button
-            android:id="@+id/settingsbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:drawableTop="@drawable/settings" />
-    </LinearLayout>
 
 </RelativeLayout>
