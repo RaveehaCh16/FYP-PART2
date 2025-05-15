@@ -28,7 +28,6 @@
         <activity android:name=".dyslexiaTherapyResultActivity"/>
         <activity android:name=".PronunciationActivity"/>
         <activity android:name=".dyslexiaTherapyActivity"/>
-        <activity android:name=".numtestgraph" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
@@ -36,9 +35,7 @@
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".alphabetmodelActivity"/>
-        <activity android:name=".numbermodelActivity"/>
         <activity android:name=".testgraph"/>
-        <activity android:name=".graphia_detect"/>
         <activity android:name=".lex_detect_types"/>
         <activity android:name=".SpeechTestActivity"/>
         <activity android:name=".SpeechBingoActivity"/>
