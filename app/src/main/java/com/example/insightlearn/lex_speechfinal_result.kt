@@ -2,10 +2,12 @@ package com.example.insightlearn
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
+
 
 class lex_speech_result : AppCompatActivity() {
 
@@ -26,7 +28,7 @@ class lex_speech_result : AppCompatActivity() {
 
             // Determine the level of speech dyslexia based on the percentage
             val dyslexiaLevel = when {
-                percentage == 100f -> "Not Dyslexic"
+                percentage >= 90f -> "Not Dyslexic"
                 percentage >= 75f -> "Slightly Dyslexic"
                 percentage >= 50f -> "Normal Dyslexic"
                 percentage >= 25f -> "Highly Dyslexic"
@@ -55,12 +57,14 @@ class lex_speech_result : AppCompatActivity() {
     }
 
     private fun celebrate(celebrationAnimation: LottieAnimationView) {
-        // Start the fireworks Lottie animation when the result is 100%
+        celebrationAnimation.setAnimation(R.raw.fireworks) // Ensure resource is correctly referenced
+        celebrationAnimation.visibility = View.VISIBLE
         celebrationAnimation.playAnimation()
 
-        // Optionally, stop the animation after some time (e.g., 5 seconds)
+        // Stop and hide the animation after 8 seconds
         celebrationAnimation.postDelayed({
             celebrationAnimation.cancelAnimation()
-        }, 8000) // Stops after 8 seconds
+            celebrationAnimation.visibility = View.GONE
+        }, 8000)
     }
 }

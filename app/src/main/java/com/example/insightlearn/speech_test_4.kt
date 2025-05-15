@@ -30,7 +30,6 @@ class SpeechTest4Activity : AppCompatActivity() {
     private var output1 = ""
     private var output2 = ""
 
-    // Replaced bestCorrectCount with latestCorrectCount
     private var latestCorrectCount = 0
     private var countedAlready = false
 
@@ -55,6 +54,10 @@ class SpeechTest4Activity : AppCompatActivity() {
         val backButton = findViewById<Button>(R.id.backButton)
         val nextButton = findViewById<Button>(R.id.nextButton)
 
+        // Initially hide result and status text views
+        resultText.visibility = View.GONE
+        statusText.visibility = View.GONE
+
         output1 = savedInstanceState?.getString("output1") ?: intent.getStringExtra("phrase")
                 ?: phrases.random()
 
@@ -75,7 +78,6 @@ class SpeechTest4Activity : AppCompatActivity() {
         }
 
         nextButton.setOnClickListener {
-            // Add the latestCorrectCount to GlobalCounter when 'Next' is pressed
             GlobalCounter.count += latestCorrectCount
             if (!countedAlready) {
                 GlobalTotal.count += output1.split(" ").size
@@ -85,7 +87,6 @@ class SpeechTest4Activity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -117,9 +118,14 @@ class SpeechTest4Activity : AppCompatActivity() {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
 
+            // Make the views visible when result is processed
+            resultText.visibility = View.VISIBLE
+            statusText.visibility = View.VISIBLE
+
             if (output2.isBlank()) {
                 statusText.text = "❌ No speech detected. Please try again."
                 resultText.text = ""
+                learnButton.visibility = View.VISIBLE
                 return
             }
 
@@ -175,7 +181,6 @@ class SpeechTest4Activity : AppCompatActivity() {
             }
 
             resultText.text = coloredResult
-            // Update latestCorrectCount with the current attempt's correct count
             latestCorrectCount = correctCount
 
             if (correctCount == words1.size) {

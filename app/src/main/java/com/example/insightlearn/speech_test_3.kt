@@ -29,7 +29,7 @@ class SpeechTest3Activity : AppCompatActivity() {
     private val SPEECH_REQUEST_CODE = 1
     private var output1 = ""
     private var output2 = ""
-    private var correctCountInCurrentAttempt = 0 // Variable to hold the current attempt's correct words count
+    private var correctCountInCurrentAttempt = 0
     private var countedAlready = false
 
     private val phrases = listOf(
@@ -59,26 +59,20 @@ class SpeechTest3Activity : AppCompatActivity() {
         val nextButton = findViewById<Button>(R.id.nextButton)
 
         backButton.setOnClickListener {
-            // Navigate to SpeechTest2Activity
-            val intent = Intent(this, SpeechTest2Activity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SpeechTest2Activity::class.java))
             finish()
         }
 
         nextButton.setOnClickListener {
-            // Add the current attempt's correct words to the global counter
             GlobalCounter.count += correctCountInCurrentAttempt
             if (!countedAlready) {
                 GlobalTotal.count += output1.split(" ").size
                 countedAlready = true
             }
-
-            val intent = Intent(this, SpeechTest4Activity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SpeechTest4Activity::class.java))
             finish()
         }
 
-        // Retain sentence if coming back from learning
         output1 = savedInstanceState?.getString("phrase")
             ?: intent.getStringExtra("phrase")
                     ?: phrases.random()
@@ -123,6 +117,9 @@ class SpeechTest3Activity : AppCompatActivity() {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
+
+            resultText.visibility = View.VISIBLE
+            statusText.visibility = View.VISIBLE
 
             if (output2.isBlank()) {
                 statusText.text = "❌ No speech detected. Please try again."
@@ -183,7 +180,7 @@ class SpeechTest3Activity : AppCompatActivity() {
             }
 
             resultText.text = coloredResult
-            correctCountInCurrentAttempt = correctCount // Store the correct word count for the current attempt
+            correctCountInCurrentAttempt = correctCount
 
             if (correctCount == words1.size) {
                 statusText.text = "✅ Test Passed!"
