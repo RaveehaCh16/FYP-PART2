@@ -42,6 +42,10 @@ class SpeechTest2Activity : AppCompatActivity() {
         val nextButton = findViewById<Button>(R.id.nextButton)
         val backButton = findViewById<Button>(R.id.backButton)
 
+        // Initially hide result and status text
+        resultText.visibility = View.GONE
+        statusText.visibility = View.GONE
+
         // Retain the same word unless it's a fresh start
         output1 = savedInstanceState?.getString("word")
             ?: intent.getStringExtra("word")
@@ -83,6 +87,7 @@ class SpeechTest2Activity : AppCompatActivity() {
         try {
             startActivityForResult(intent, SPEECH_REQUEST_CODE)
         } catch (e: Exception) {
+            resultText.visibility = View.VISIBLE
             resultText.text = "Speech recognition is not supported on this device."
         }
     }
@@ -98,6 +103,10 @@ class SpeechTest2Activity : AppCompatActivity() {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
+
+            // Show result and status only after receiving a result
+            resultText.visibility = View.VISIBLE
+            statusText.visibility = View.VISIBLE
 
             resultText.text = "You said: $output2"
             GlobalTotal.count += 1

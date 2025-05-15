@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.emitter.Emitter
-import nl.dionsegijn.konfetti.core.emitter.EmitterConfig
 import nl.dionsegijn.konfetti.xml.KonfettiView
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -37,11 +36,15 @@ class SpeechTestActivity : AppCompatActivity() {
         statusText = findViewById(R.id.statusTextView)
         topLabel = findViewById(R.id.topLabel)
         konfettiView = findViewById(R.id.konfettiView)
+        learnButton = findViewById(R.id.learnPronunciationButton)
 
         val speakButton = findViewById<Button>(R.id.speakButton)
         val nextButton = findViewById<Button>(R.id.nextButton)
         val backButton = findViewById<Button>(R.id.backButton)
-        learnButton = findViewById(R.id.learnPronunciationButton)
+
+        // Initially hide result and status text
+        resultText.visibility = View.GONE
+        statusText.visibility = View.GONE
 
         // Retain the same word unless it's a fresh start
         output1 = savedInstanceState?.getString("word")
@@ -66,7 +69,7 @@ class SpeechTestActivity : AppCompatActivity() {
         }
 
         backButton.setOnClickListener {
-            val intent = Intent(this, lex_detect_types::class.java) // Replace with your actual home screen class
+            val intent = Intent(this, lex_detect_types::class.java)
             startActivity(intent)
         }
     }
@@ -84,6 +87,7 @@ class SpeechTestActivity : AppCompatActivity() {
         try {
             startActivityForResult(intent, SPEECH_REQUEST_CODE)
         } catch (e: Exception) {
+            resultText.visibility = View.VISIBLE
             resultText.text = "Speech recognition is not supported on this device."
         }
     }
@@ -92,7 +96,6 @@ class SpeechTestActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            // Returned from PronunciationActivity — keep the word unchanged
             topLabel.text = "Speak word: $output1"
             return
         }
@@ -101,11 +104,16 @@ class SpeechTestActivity : AppCompatActivity() {
             val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             output2 = result?.get(0)?.lowercase(Locale.ROOT) ?: ""
 
+            // Show result and status only after receiving a result
+            resultText.visibility = View.VISIBLE
+            statusText.visibility = View.VISIBLE
+
             resultText.text = "You said: $output2"
             GlobalTotal.count += 1
 
             if (output2 == output1) {
                 statusText.text = "✅ Test Passed!"
+                GlobalCounter.count += 1
                 learnButton.visibility = View.GONE
                 celebrate()
             } else {

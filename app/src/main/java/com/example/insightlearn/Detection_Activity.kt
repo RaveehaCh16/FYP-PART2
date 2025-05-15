@@ -26,7 +26,7 @@ class DetectionActivity : AppCompatActivity() {
 
         // Navigate to Dysgraphia Details
         dysgraphiaButton.setOnClickListener {
-            val intent = Intent(this, graphia_detect::class.java)
+            val intent = Intent(this, testgraph::class.java)
             startActivity(intent)
         }
 

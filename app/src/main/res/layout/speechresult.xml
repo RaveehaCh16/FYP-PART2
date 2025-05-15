@@ -4,17 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backscreen">
+    android:background="@drawable/speech_result">
 
     <!-- Top Label to display random phrase -->
     <TextView
         android:id="@+id/topLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Result"
+        android:text="    Result"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:background="@drawable/rounded_textview"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true" />
 
@@ -35,12 +36,16 @@
 
 
     <!-- Lottie Animation for Fireworks -->
+    <!-- Place Lottie animation as the last element to ensure it's on top -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/celebrationAnimation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         app:lottie_rawRes="@raw/fireworks"
         app:lottie_autoPlay="false"
-        app:lottie_loop="false" />
+        app:lottie_loop="false"
+        android:visibility="gone" />
 
 </RelativeLayout>
