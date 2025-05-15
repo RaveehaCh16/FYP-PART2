@@ -4,16 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class dyslexiaResultActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lex_result_screen)
 
-        // Try to get both kinds of keys depending on which test it is
+        // Get values passed from test activities
         val totalAttempts = intent.getIntExtra("TOTAL_OCCURRENCES", -1)
         val correctAnswers = intent.getIntExtra("CORRECT_SELECTIONS", -1)
         val incorrectAnswers = intent.getIntExtra("INCORRECT_SELECTIONS", -1)
@@ -26,6 +27,7 @@ class dyslexiaResultActivity : AppCompatActivity() {
 
         val resultText = findViewById<TextView>(R.id.resultText)
         val nextTestButton = findViewById<Button>(R.id.nextTestButton)
+        val resultContainer = findViewById<LinearLayout>(R.id.resultContainer)
 
         val finalTotal = if (totalAttempts != -1) totalAttempts else totalAttemptsAlt
         val finalCorrect = if (correctAnswers != -1) correctAnswers else correctAnswersAlt
@@ -44,8 +46,7 @@ class dyslexiaResultActivity : AppCompatActivity() {
                 nextTestButton.visibility = View.VISIBLE
                 nextTestButton.text = "Go to Test 2"
                 nextTestButton.setOnClickListener {
-                    val intent = Intent(this, DyslexiaTest2Activity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, DyslexiaTest2Activity::class.java))
                     finish()
                 }
             }
@@ -53,13 +54,26 @@ class dyslexiaResultActivity : AppCompatActivity() {
                 nextTestButton.visibility = View.VISIBLE
                 nextTestButton.text = "Go to Test 3"
                 nextTestButton.setOnClickListener {
-                    val intent = Intent(this, DyslexiaTest3Activity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, DyslexiaTest3Activity::class.java))
                     finish()
                 }
             }
             3 -> {
-                nextTestButton.visibility = View.GONE // No further tests after Test 3
+                nextTestButton.visibility = View.GONE
+
+                // ✅ Add BACK TO PORTAL button for Test 3
+                val backToPortalBtn = Button(this).apply {
+                    text = "BACK TO PORTAL"
+                    setBackgroundResource(R.drawable.round_corners)
+                    setPadding(40, 20, 40, 20)
+                    setTextColor(ContextCompat.getColor(context, android.R.color.black))
+                    textSize = 16f
+                    setOnClickListener {
+                        startActivity(Intent(this@dyslexiaResultActivity, lex_detect_types::class.java))
+                        finish()
+                    }
+                }
+                resultContainer.addView(backToPortalBtn)
             }
         }
     }

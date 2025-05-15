@@ -34,11 +34,11 @@ class DyslexiaTest3Activity : AppCompatActivity() {
 
         setupColumns()
 
-        findViewById<Button>(R.id.backBtn).setOnClickListener {
+        findViewById<Button>(R.id.backButton).setOnClickListener {
             finish()
         }
 
-        findViewById<Button>(R.id.nextBtn).setOnClickListener {
+        findViewById<Button>(R.id.nextButton).setOnClickListener {
             navigateToResultScreen()
         }
     }

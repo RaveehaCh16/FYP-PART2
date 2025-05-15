@@ -2,9 +2,11 @@ package com.example.insightlearn
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import android.widget.GridLayout.LayoutParams
 
 class DyslexiaTest2Activity : AppCompatActivity() {
 
@@ -13,20 +15,17 @@ class DyslexiaTest2Activity : AppCompatActivity() {
     private lateinit var optionsLayout: GridLayout
     private lateinit var nextButton: Button
     private lateinit var backButton: Button
-    private lateinit var homeIcon: ImageView
-    private lateinit var settingsIcon: ImageView
 
-    // YOUR ORIGINAL QUESTION LIST WITH MULTIPLE CORRECT OPTIONS
     private val questions = listOf(
-        Triple("C _ T", listOf('A', 'U', 'O'), "CAT, CUT, COT"),
+        Triple("C _ T", listOf('A', 'U', 'O'), "CAT,CUT,COT" ),
         Triple("J U _ P", listOf('M'), "JUMP"),
-        Triple("S _ N", listOf('U', 'I'), "SUN, SIN"),
-        Triple("P E _", listOf('N', 'A'), "PEN , PEA"),
-        Triple("H _ T", listOf('A', 'I', 'O', 'U'), "HAT, HIT, HOT, HUT"),
+        Triple("S _ N", listOf('U', 'I'), "SUN,SIN"),
+        Triple("P E _", listOf('N', 'A'), "PEN,PEA"),
+        Triple("H _ T", listOf('A', 'I', 'O', 'U'), "HAT,HIT,HOT,HUT"),
         Triple("M _ L K", listOf('I'), "MILK"),
-        Triple("B _ T", listOf('A', 'E', 'I', 'O', 'U'), "BAT, BET, BIT, BOT, BUT"),
-        Triple("M _ P", listOf('A', 'O'), "MAP, MOP"),
-        Triple("_ E G", listOf('L', 'B', 'P', 'R'), "LEG, BEG, PEG, REG"),
+        Triple("B _ T", listOf('A', 'E', 'I','U'), "BAT,BET,BIT,BUT"),
+        Triple("M _ P", listOf('A', 'O'), "MAP,MOP"),
+        Triple("_ E G", listOf('L', 'B', 'P'), "LEG,BEG,PEG"),
         Triple("T _ R E", listOf('R'), "TREE")
     )
 
@@ -45,8 +44,8 @@ class DyslexiaTest2Activity : AppCompatActivity() {
         optionsLayout = findViewById(R.id.optionsLayout)
         nextButton = findViewById(R.id.nextButton)
         backButton = findViewById(R.id.backButton)
-        homeIcon = findViewById(R.id.homeIcon)
-        settingsIcon = findViewById(R.id.settingsIcon)
+
+        instructionText.text = "Fill in the blank."
 
         loadQuestion()
 
@@ -67,69 +66,44 @@ class DyslexiaTest2Activity : AppCompatActivity() {
         }
 
         backButton.setOnClickListener { finish() }
-
-        homeIcon.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
-
-        settingsIcon.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
     }
 
     private fun loadQuestion() {
-        val (incompleteWord, correctLetters, correctWords) = questions[currentIndex]
-
-        // Randomly pick one valid letter to act as the correct answer
+        val (incompleteWord, correctLetters, correctWord) = questions[currentIndex]
         currentCorrectLetter = correctLetters.random()
 
         questionText.text = incompleteWord
         optionsLayout.removeAllViews()
 
-        // Get 3 random incorrect letters
-        val wrongOptions = ('A'..'Z')
-            .filter { it !in correctLetters }
-            .shuffled()
-            .take(3)
-
-        // Mix them with the chosen correct letter
+        val wrongOptions = ('A'..'Z').filter { it !in correctLetters }.shuffled().take(3)
         val allOptions = (wrongOptions + currentCorrectLetter).shuffled()
 
         for (option in allOptions) {
             val button = Button(this).apply {
                 text = option.toString()
-                setBackgroundColor(ContextCompat.getColor(this@DyslexiaTest2Activity, R.color.alphabetButtonBackground))
-                setTextColor(ContextCompat.getColor(this@DyslexiaTest2Activity, R.color.alphabetButtonText))
-                textSize = 18f
-                isAllCaps = false
+                textSize = 20f
                 background = ContextCompat.getDrawable(this@DyslexiaTest2Activity, R.drawable.round_corners)
-            }
+                setTextColor(ContextCompat.getColor(this@DyslexiaTest2Activity, android.R.color.white))
+                setPadding(8, 8, 8, 8)
 
-            val params = GridLayout.LayoutParams().apply {
-                width = GridLayout.LayoutParams.WRAP_CONTENT
-                height = GridLayout.LayoutParams.WRAP_CONTENT
-                columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1)
-                rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1)
-                setMargins(15, 20, 8, 15)
+                layoutParams = LayoutParams().apply {
+                    width = resources.getDimensionPixelSize(R.dimen.option_button_width)
+                    height = resources.getDimensionPixelSize(R.dimen.option_button_height)
+                    setMargins(16, 16, 16, 16)
+                    gravity = Gravity.CENTER
+                }
             }
-
-            button.layoutParams = params
 
             button.setOnClickListener {
                 disableAllButtons()
                 answerSelected = true
-                val selectedChar = option
-                val completedWord = incompleteWord.replace('_', currentCorrectLetter)
 
-                if (selectedChar == currentCorrectLetter) {
+                if (option == currentCorrectLetter) {
                     correctAnswers++
-                    questionText.text = "Correct: $completedWord"
-                    button.setBackgroundColor(ContextCompat.getColor(this@DyslexiaTest2Activity, R.color.correctSelection))
+                    questionText.text = "Correct!"
                 } else {
                     incorrectAnswers++
-                    questionText.text = "Incorrect.\nCorrect: $completedWord"
-                    button.setBackgroundColor(ContextCompat.getColor(this@DyslexiaTest2Activity, R.color.incorrectSelection))
+                    questionText.text = "Incorrect"
                 }
             }
 

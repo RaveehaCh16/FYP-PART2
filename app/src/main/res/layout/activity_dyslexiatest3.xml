@@ -4,18 +4,24 @@
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A4D6A7"
+    android:background="@drawable/background1"
+    android:padding="16dp"
     tools:context=".DyslexiaTest3Activity">
 
     <TextView
         android:id="@+id/testTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="68dp"
         android:text="TEST 3"
-        android:textSize="20sp"
+        android:textSize="33sp"
         android:background="@drawable/round_corners"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"/>
+
 
     <TextView
         android:id="@+id/instructionText"
@@ -23,10 +29,11 @@
         android:layout_height="wrap_content"
         android:text="Match the similar words"
         android:textSize="22sp"
-        android:textStyle="bold"
+        android:textColor="#000000"
         android:layout_below="@id/testTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:id="@+id/columnContainer"
@@ -66,22 +73,25 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/backBtn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="←BACK"
-            android:textSize="18sp"
-            android:background="@drawable/round_corners" />
+            android:layout_margin="8dp"
+            android:background="@drawable/round_corners"
+            android:text="BACK" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
-            android:id="@+id/nextBtn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NEXT→"
-            android:textSize="18sp"
-            android:background="@drawable/round_corners" />
+            android:layout_margin="8dp"
+            android:background="@drawable/round_corners"
+            android:text="NEXT" />
     </LinearLayout>
 
 </RelativeLayout>
