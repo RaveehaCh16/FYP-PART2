@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.*
 import android.speech.RecognizerIntent
-import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +29,6 @@ class TherapyPracticeActivity : AppCompatActivity() {
     private val REQUEST_CODE_SPEECH_INPUT = 100
     private var countDownTimer: CountDownTimer? = null
     private var isCurrentWordCorrect = false
-    private lateinit var tts: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +43,6 @@ class TherapyPracticeActivity : AppCompatActivity() {
 
         feedbackText.visibility = View.GONE
         nextButton.isEnabled = false
-
-        tts = TextToSpeech(this) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                tts.language = Locale.ENGLISH
-            }
-        }
 
         showWord()
 
@@ -71,7 +63,7 @@ class TherapyPracticeActivity : AppCompatActivity() {
                 currentIndex--
                 showWord()
             } else {
-                finish() // go back to portal
+                finish()
             }
         }
     }
@@ -83,15 +75,13 @@ class TherapyPracticeActivity : AppCompatActivity() {
         nextButton.isEnabled = false
         isCurrentWordCorrect = false
 
-        // Reset timer
         timerText.visibility = View.VISIBLE
         timerText.text = "Time left: 10 s"
         countDownTimer?.cancel()
 
         countDownTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val seconds = (millisUntilFinished / 1000).toInt()
-                timerText.text = "Time left: $seconds s"
+                timerText.text = "Time left: ${(millisUntilFinished / 1000)} s"
             }
 
             override fun onFinish() {
@@ -104,10 +94,7 @@ class TherapyPracticeActivity : AppCompatActivity() {
 
     private fun startSpeechToText() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH)
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the word")
         try {
@@ -133,19 +120,17 @@ class TherapyPracticeActivity : AppCompatActivity() {
                 isCurrentWordCorrect = false
                 nextButton.isEnabled = false
 
-                tts.speak(targetWord, TextToSpeech.QUEUE_FLUSH, null, null)
                 Handler(Looper.getMainLooper()).postDelayed({
                     startSpeechToText()
-                }, 2000)
+                }, 1000) // Repeat after 1 second
             }
+
             feedbackText.visibility = View.VISIBLE
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        tts.stop()
-        tts.shutdown()
         countDownTimer?.cancel()
     }
 }
