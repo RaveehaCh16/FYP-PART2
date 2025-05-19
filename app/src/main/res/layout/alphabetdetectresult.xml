@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8E6A3"
+    android:background="@drawable/speech_result"
     tools:context=".alphabetmodelActivity">
 
     <!-- ImageView to display the loaded image with a 1:1 aspect ratio -->

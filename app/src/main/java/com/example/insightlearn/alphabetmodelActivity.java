@@ -83,7 +83,7 @@ public class alphabetmodelActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(alphabetmodelActivity.this, lex_detect_types.class);
+                Intent intent = new Intent(alphabetmodelActivity.this, DetectionActivity.class);
                 startActivity(intent);
             }
         });
