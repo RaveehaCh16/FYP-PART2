@@ -8,10 +8,11 @@
     android:padding="16dp"
     tools:context=".DyslexiaTest3Activity">
 
+    <!-- Title -->
     <TextView
         android:id="@+id/testTitle"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:text="TEST 3"
         android:textSize="33sp"
         android:background="@drawable/round_corners"
@@ -19,10 +20,9 @@
         android:layout_centerHorizontal="true"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:padding="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:padding="10dp" />
 
-
+    <!-- Instruction -->
     <TextView
         android:id="@+id/instructionText"
         android:layout_width="wrap_content"
@@ -32,43 +32,54 @@
         android:textColor="#000000"
         android:layout_below="@id/testTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_marginTop="10dp" />
 
+    <!-- Container to center the words -->
     <LinearLayout
-        android:id="@+id/columnContainer"
+        android:id="@+id/wordCenterWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_above="@id/bottomNavigation"
         android:layout_below="@id/instructionText"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical|center_horizontal">
 
         <LinearLayout
-            android:id="@+id/leftColumn"
-            android:layout_width="0dp"
+            android:id="@+id/columnContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
 
-        <LinearLayout
-            android:id="@+id/rightColumn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal" />
+            <LinearLayout
+                android:id="@+id/leftColumn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal" />
+
+            <LinearLayout
+                android:id="@+id/rightColumn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- Bottom Buttons -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:weightSum="2">
 
@@ -93,5 +104,4 @@
             android:background="@drawable/round_corners"
             android:text="NEXT" />
     </LinearLayout>
-
 </RelativeLayout>
