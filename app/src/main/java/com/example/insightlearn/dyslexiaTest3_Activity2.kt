@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
-class DyslexiaTest3Activity : AppCompatActivity() {
+class DyslexiaTest3_Activity2 : AppCompatActivity() {
 
     private lateinit var leftColumn: LinearLayout
     private lateinit var rightColumn: LinearLayout
 
-    private val leftWords = listOf("Tree", "Star", "Hand", "Boat", "Moon")
-    private val rightWords = listOf("Hand", "Boat", "Moon", "Star", "Tree")
+    private val leftWords = listOf("King", "Frog", "Snow", "Clock", "Chair")
+    private val rightWords = listOf("Clock", "King", "Frog", "Chair", "Snow")
 
     private var selectedLeft: TextView? = null
     private var selectedRight: TextView? = null
@@ -23,12 +23,20 @@ class DyslexiaTest3Activity : AppCompatActivity() {
     private var incorrectAnswers = 0
     private var totalAttempts = 0
 
+    private var partACorrect = 0
+    private var partAIncorrect = 0
+    private var partAAttempts = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dyslexiatest3)
 
         leftColumn = findViewById(R.id.leftColumn)
         rightColumn = findViewById(R.id.rightColumn)
+
+        partACorrect = intent.getIntExtra("PART_A_CORRECT", 0)
+        partAIncorrect = intent.getIntExtra("PART_A_INCORRECT", 0)
+        partAAttempts = intent.getIntExtra("PART_A_ATTEMPTS", 0)
 
         setupColumns()
 
@@ -37,7 +45,7 @@ class DyslexiaTest3Activity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.nextButton).setOnClickListener {
-            navigateToPartB()
+            navigateToResultScreen()
         }
     }
 
@@ -116,11 +124,16 @@ class DyslexiaTest3Activity : AppCompatActivity() {
         selectedRight = null
     }
 
-    private fun navigateToPartB() {
-        val intent = Intent(this, DyslexiaTest3_Activity2::class.java).apply {
-            putExtra("PART_A_ATTEMPTS", totalAttempts)
-            putExtra("PART_A_CORRECT", correctAnswers)
-            putExtra("PART_A_INCORRECT", incorrectAnswers)
+    private fun navigateToResultScreen() {
+        val combinedCorrect = partACorrect + correctAnswers
+        val combinedIncorrect = partAIncorrect + incorrectAnswers
+        val combinedAttempts = partAAttempts + totalAttempts
+
+        val intent = Intent(this, dyslexiaResultActivity::class.java).apply {
+            putExtra("TOTAL_ATTEMPTS", combinedAttempts)
+            putExtra("CORRECT_ANSWERS", combinedCorrect)
+            putExtra("INCORRECT_ANSWERS", combinedIncorrect)
+            putExtra("CURRENT_TEST", 3)
         }
         startActivity(intent)
         finish()

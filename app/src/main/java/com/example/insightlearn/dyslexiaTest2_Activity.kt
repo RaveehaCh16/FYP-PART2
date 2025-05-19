@@ -26,7 +26,7 @@ class DyslexiaTest2Activity : AppCompatActivity() {
         Triple("B _ T", listOf('A', 'E', 'I','U'), "BAT,BET,BIT,BUT"),
         Triple("M _ P", listOf('A', 'O'), "MAP,MOP"),
         Triple("_ E G", listOf('L', 'B', 'P'), "LEG,BEG,PEG"),
-        Triple("T _ R E", listOf('R'), "TREE")
+        Triple("T _ E E", listOf('R'), "TREE")
     )
 
     private var currentIndex = 0
