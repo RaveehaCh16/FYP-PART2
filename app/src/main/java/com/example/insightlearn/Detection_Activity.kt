@@ -15,8 +15,7 @@ class DetectionActivity : AppCompatActivity() {
         // Initialize Buttons
         val dyslexiaButton = findViewById<Button>(R.id.dyslexiaButton)
         val dysgraphiaButton = findViewById<Button>(R.id.dysgraphiaButton)
-        val homeButton = findViewById<Button>(R.id.homeButton)
-        val settingsButton = findViewById<Button>(R.id.settingsButton)
+        val backButton = findViewById<Button>(R.id.backButton)
 
         // Navigate to Dyslexia Details
         dyslexiaButton.setOnClickListener {
@@ -30,17 +29,11 @@ class DetectionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Navigate to Home Screen
-        homeButton.setOnClickListener {
+        backButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-        }
+                }
 
-        // Navigate to Settings Screen
-        settingsButton.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
 
 
     }

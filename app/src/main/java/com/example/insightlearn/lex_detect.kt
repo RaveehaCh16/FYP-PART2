@@ -12,6 +12,7 @@ class lex_detect_types : AppCompatActivity() {
 
         val speechButton = findViewById<Button>(R.id.proButton)
         val memoryButton = findViewById<Button>(R.id.memButton)
+        val backButton = findViewById<Button>(R.id.backButton)
 
 
         speechButton.setOnClickListener {
@@ -23,5 +24,9 @@ class lex_detect_types : AppCompatActivity() {
                     val intent = Intent(this, DyslexiaTestActivity::class.java)
                     startActivity(intent)
                 }
+        backButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

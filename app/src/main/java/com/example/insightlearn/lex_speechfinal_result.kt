@@ -17,6 +17,7 @@ class lex_speech_result : AppCompatActivity() {
 
         // Find the resultTextView and Lottie animation view
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val backButton = findViewById<Button>(R.id.backButton)
         val celebrationAnimation = findViewById<LottieAnimationView>(R.id.celebrationAnimation)
 
 
@@ -53,6 +54,11 @@ class lex_speech_result : AppCompatActivity() {
         // After displaying the result, reset both counters to zero
         GlobalCounter.count = 0
         GlobalTotal.count = 0
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, lex_detect_types::class.java)
+            startActivity(intent)
+        }
 
     }
 
