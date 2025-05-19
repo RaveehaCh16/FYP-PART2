@@ -2,32 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8E6A3">
-
-    <!-- Title Button -->
-    <Button
-        android:id="@+id/titleButton"
-        android:layout_width="250dp"
-        android:layout_height="68dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_corners"
-        android:padding="10dp"
-        android:text="@string/insight_learn"
-        android:textSize="30sp"
-        android:textColor="#000000"
-        android:textStyle="bold" />
+    android:background="@drawable/back01">
 
     <!-- Detection Button -->
     <Button
         android:id="@+id/detectionButton"
-        android:layout_width="300dp"
-        android:layout_height="210dp"
-        android:layout_below="@id/titleButton"
+        android:layout_width="250dp"
+        android:layout_height="110dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/round_form"
-        android:drawableTop="@drawable/detection"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/button_3d_round"
         android:paddingTop="10dp"
         android:text="@string/detection"
         android:textColor="#000000"
@@ -35,39 +19,18 @@
         android:textStyle="bold" />
 
     <!-- Therapy Button -->
-
-    <!-- Settings Icon -->
     <Button
         android:id="@+id/therapyButton"
-        android:layout_width="300dp"
-        android:layout_height="210dp"
+        android:layout_width="250dp"
+        android:layout_height="110dp"
         android:layout_below="@id/detectionButton"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/round_form"
-        android:drawableTop="@drawable/therapy"
+        android:background="@drawable/button_3d_round"
         android:paddingTop="10dp"
         android:text="@string/therapy"
         android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#66AC54"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/settingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:background="#00000000"
-            android:drawableTop="@drawable/settings" />
-    </LinearLayout>
-
-
 
 </RelativeLayout>

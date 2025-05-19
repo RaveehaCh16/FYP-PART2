@@ -25,7 +25,7 @@ class lex_detect_types : AppCompatActivity() {
                     startActivity(intent)
                 }
         backButton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, DetectionActivity::class.java)
             startActivity(intent)
         }
     }

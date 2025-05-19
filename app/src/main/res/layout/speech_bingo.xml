@@ -62,6 +62,7 @@
                 android:visibility="gone" />
         </FrameLayout>
 
+
         <!-- Prompt Button -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/promptButton"
@@ -70,5 +71,28 @@
             app:lottie_rawRes="@raw/prompt"
             app:lottie_autoPlay="true"
             app:lottie_loop="true" />
+
+        <LinearLayout
+            android:id="@+id/navigationLayout"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="50dp"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="Back"
+                android:textSize="18sp"
+                android:background="@drawable/button_3d_round"/>
+        </LinearLayout>
+
     </LinearLayout>
+
 </FrameLayout>

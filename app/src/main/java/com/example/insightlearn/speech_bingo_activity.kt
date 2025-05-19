@@ -14,6 +14,8 @@ import com.airbnb.lottie.LottieAnimationView
 import java.util.*
 import android.graphics.Color
 import android.view.View
+import android.widget.Button
+
 
 
 class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -25,6 +27,7 @@ class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var currentWord = ""
     private val SPEECH_CODE = 101
     private var gameOver = false
+    lateinit var backbutton: Button
 
 
     private val wordList = mutableListOf(
@@ -55,6 +58,7 @@ class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         bingoGrid = findViewById(R.id.wordGrid)
         currentWordDisplay = findViewById(R.id.currentWordDisplay)
         promptButton = findViewById(R.id.promptButton)
+        backbutton = findViewById(R.id.backButton)
         bingoAnimation = findViewById(R.id.bingoAnimation)
         promptButton.isEnabled = false
 
@@ -64,6 +68,10 @@ class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         promptButton.setOnClickListener {
             promptSpeechInput()
+        }
+        backbutton.setOnClickListener {
+            val intent = Intent(this, DyslexiaTherapy_Portals::class.java)
+            startActivity(intent)
         }
     }
 

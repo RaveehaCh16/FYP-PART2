@@ -8,13 +8,13 @@ import android.widget.Button
 class TherapyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.therapy_screen)
+        setContentView(R.layout.detection_screen)
 
         // Initialize buttons
         val dyslexiaButton = findViewById<Button>(R.id.dyslexiaButton)
         val dysgraphiaButton = findViewById<Button>(R.id.dysgraphiaButton)
-        val homeButton = findViewById<Button>(R.id.homeButton)
-        val settingsButton = findViewById<Button>(R.id.settingsButton)
+        val backButton = findViewById<Button>(R.id.backButton)
+
 
         // Set onClick listeners for buttons
         dyslexiaButton.setOnClickListener {
@@ -26,16 +26,12 @@ class TherapyActivity : AppCompatActivity() {
             val intent = Intent(this, youtube_dysgraphia_therapy::class.java)
             startActivity(intent)
         }
-
-        homeButton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+        backButton.setOnClickListener {
+            val intent = Intent(this, DetectionActivity::class.java)
             startActivity(intent)
         }
 
-        settingsButton.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 }
 

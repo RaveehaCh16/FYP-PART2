@@ -16,7 +16,6 @@ class HomeActivity : AppCompatActivity() {
         // Find views
         val detectionButton = findViewById<Button>(R.id.detectionButton)
         val therapyButton = findViewById<Button>(R.id.therapyButton)
-        val settingsIcon = findViewById<Button>(R.id.settingsButton)
 
         // Set up click listeners
         // Inside HomeActivity.kt
@@ -28,12 +27,7 @@ class HomeActivity : AppCompatActivity() {
         therapyButton.setOnClickListener {
             val intent = Intent(this, TherapyActivity::class.java)
             startActivity(intent)
-        }
 
-        settingsIcon.setOnClickListener {
-            // Navigate to SettingsActivity (if implemented)
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
         }
     }
 }

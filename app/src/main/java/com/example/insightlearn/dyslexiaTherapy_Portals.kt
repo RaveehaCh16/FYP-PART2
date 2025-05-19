@@ -12,7 +12,7 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
 
         val gameButton = findViewById<Button>(R.id.proButton)
         val practiceButton = findViewById<Button>(R.id.memButton)
-
+        val backButton = findViewById<Button>(R.id.backButton)
 
         gameButton.setOnClickListener {
             val intent = Intent(this, GameScreenActivity::class.java)
@@ -21,6 +21,11 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
 
         practiceButton.setOnClickListener {
             val intent = Intent(this, TherapyPracticeActivity::class.java)
+            startActivity(intent)
+        }
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, TherapyActivity::class.java)
             startActivity(intent)
         }
     }
