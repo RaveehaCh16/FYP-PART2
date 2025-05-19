@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.content.Intent;
+import com.example.insightlearn.youtube_dysgraphia_therapy;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.os.Handler;
 import android.os.Looper;
+
 
 public class alphabetmodelActivity extends AppCompatActivity {
 
@@ -47,8 +50,9 @@ public class alphabetmodelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alphabetdetectresult); // Ensure this matches your XML layout name
-
+        setContentView(R.layout.alphabetdetectresult);
+        Button nextButton = findViewById(R.id.nextButton);
+        Button backButton = findViewById(R.id.backButton);
         // Initialize views
         imageView = findViewById(R.id.imageView);
         resultText = findViewById(R.id.resultText);
@@ -56,23 +60,35 @@ public class alphabetmodelActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         predictButton = findViewById(R.id.predictButton);
 
-        // Initialize ExecutorService and Handler for background tasks
+        // Hide predict button and raw result text
+        predictButton.setVisibility(View.GONE);
+        rawResultText.setVisibility(View.GONE);
+
+        // Initialize ExecutorService and Handler
         executorService = Executors.newSingleThreadExecutor();
         mainHandler = new Handler(Looper.getMainLooper());
 
-        // Load the TensorFlow Lite model asynchronously
+        // Load model and then automatically predict
         loadModelAsync();
 
-        // Handle the predict button click event
-        predictButton.setOnClickListener(v -> {
-            // Disable button to prevent multiple clicks
-            predictButton.setEnabled(false);
-            resultText.setText("Predicting...");
-            rawResultText.setText("Result:");
-            progressBar.setVisibility(View.VISIBLE);
-            runPrediction();
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(alphabetmodelActivity.this, youtube_dysgraphia_therapy.class);
+                startActivity(intent);
+            }
+        });
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(alphabetmodelActivity.this, TherapyActivity.class);
+                startActivity(intent);
+            }
         });
     }
+
 
     /**
      * Asynchronously loads the TensorFlow Lite model to prevent blocking the UI thread.
@@ -82,9 +98,10 @@ public class alphabetmodelActivity extends AppCompatActivity {
             boolean isModelLoaded = loadModel();
             mainHandler.post(() -> {
                 if (isModelLoaded) {
-                    Log.d("TAG", "Model loaded successfully!");
-                    resultText.setText("Model loaded successfully.");
-                    logModelDetails();
+                    Log.d("TAG", "Model loaded successfully.");
+                    resultText.setText("Predicting...");
+                    progressBar.setVisibility(View.VISIBLE);
+                    runPrediction(); // Automatically start prediction
                 } else {
                     Log.e("TAG", "Failed to load model.");
                     resultText.setText("Model loading failed.");
@@ -92,6 +109,7 @@ public class alphabetmodelActivity extends AppCompatActivity {
             });
         });
     }
+
 
     /**
      * Asynchronously runs the prediction to prevent blocking the UI thread.
@@ -108,8 +126,7 @@ public class alphabetmodelActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     predictButton.setEnabled(true); // Re-enable button
                     if (result != null) {
-                        // Display the raw result
-                        rawResultText.setText("Raw Result: " + Arrays.toString(result));
+
 
                         // Get the probability for class 1 (positive class)
                         float probability = result[0];
