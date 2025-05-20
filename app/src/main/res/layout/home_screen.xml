@@ -8,7 +8,7 @@
     <Button
         android:id="@+id/detectionButton"
         android:layout_width="250dp"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
         android:background="@drawable/button_3d_round"
@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/therapyButton"
         android:layout_width="250dp"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:layout_below="@id/detectionButton"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"

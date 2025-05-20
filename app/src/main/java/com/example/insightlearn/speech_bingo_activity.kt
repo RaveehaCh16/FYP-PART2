@@ -167,7 +167,10 @@ class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val results = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             val spokenText = results?.get(0)?.lowercase(Locale.ROOT) ?: ""
 
-            if (spokenText == currentWord.lowercase()) {
+            val spokenWordsList = spokenText.split(" ")
+            val wordMatched = spokenWordsList.all { it == currentWord.lowercase() }
+
+            if (wordMatched) {
                 markWordAsCorrect(currentWord)
                 correctWords.add(currentWord)
                 Toast.makeText(this, "✅ Yahoo! Correct Answer", Toast.LENGTH_SHORT).show()
@@ -181,6 +184,7 @@ class SpeechBingoActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             handler.postDelayed({ speakRandomWord() }, 1000)
         }
     }
+
 
     private fun markWordAsCorrect(word: String) {
         cellViews.find { it.text.toString().contains(word, ignoreCase = true) }?.let { cell ->
