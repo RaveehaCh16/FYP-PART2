@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Image same as Letter A -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/letslearn" />
+
+    <!-- Content over background -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingTop="100dp"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@android:color/transparent">
+
+            <!-- Ee + Envelope -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ee"
+                    android:textSize="36sp"
+                    android:textColor="#000000"
+                    android:layout_marginEnd="12dp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/envelop_icon"
+                    android:contentDescription="Envelope" />
+            </LinearLayout>
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✍️ Let's Learn How to Write E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Drawing Canvas -->
+            <com.example.insightlearn.EDotDrawingView
+                android:id="@+id/drawingView"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/tracing_board_bg"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Instruction -->
+            <TextView
+                android:id="@+id/instructionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 1: Trace the vertical line of 'E'"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Success Message -->
+            <TextView
+                android:id="@+id/successMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You did a great job!"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Buttons Row: Reset and Back -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Reset"
+                    android:background="@drawable/rounded_pink_button"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/rounded_orange_button"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Next Button Centered Underneath -->
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:background="@drawable/rounded_green_button"
+                android:textColor="#FFFFFF"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
