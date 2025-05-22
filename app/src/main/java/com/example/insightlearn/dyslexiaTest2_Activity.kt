@@ -17,13 +17,13 @@ class DyslexiaTest2Activity : AppCompatActivity() {
     private lateinit var backButton: Button
 
     private val questions = listOf(
-        Triple("C _ T", listOf('A', 'U', 'O'), "CAT,CUT,COT" ),
+        Triple("C _ T", listOf('A', 'U', 'O'), "CAT,CUT,COT"),
         Triple("J U _ P", listOf('M'), "JUMP"),
         Triple("S _ N", listOf('U', 'I'), "SUN,SIN"),
         Triple("P E _", listOf('N', 'A'), "PEN,PEA"),
         Triple("H _ T", listOf('A', 'I', 'O', 'U'), "HAT,HIT,HOT,HUT"),
         Triple("M _ L K", listOf('I'), "MILK"),
-        Triple("B _ T", listOf('A', 'E', 'I','U'), "BAT,BET,BIT,BUT"),
+        Triple("B _ T", listOf('A', 'E', 'I', 'U'), "BAT,BET,BIT,BUT"),
         Triple("M _ P", listOf('A', 'O'), "MAP,MOP"),
         Triple("_ E G", listOf('L', 'B', 'P'), "LEG,BEG,PEG"),
         Triple("T _ E E", listOf('R'), "TREE")
@@ -46,7 +46,6 @@ class DyslexiaTest2Activity : AppCompatActivity() {
         backButton = findViewById(R.id.backButton)
 
         instructionText.text = "Fill in the blank."
-
         loadQuestion()
 
         nextButton.setOnClickListener {
@@ -69,7 +68,7 @@ class DyslexiaTest2Activity : AppCompatActivity() {
     }
 
     private fun loadQuestion() {
-        val (incompleteWord, correctLetters, correctWord) = questions[currentIndex]
+        val (incompleteWord, correctLetters, _) = questions[currentIndex]
         currentCorrectLetter = correctLetters.random()
 
         questionText.text = incompleteWord
@@ -92,18 +91,21 @@ class DyslexiaTest2Activity : AppCompatActivity() {
                     setMargins(16, 16, 16, 16)
                     gravity = Gravity.CENTER
                 }
-            }
 
-            button.setOnClickListener {
-                disableAllButtons()
-                answerSelected = true
+                setOnClickListener {
+                    disableAllButtons()
+                    answerSelected = true
 
-                if (option == currentCorrectLetter) {
-                    correctAnswers++
-                    questionText.text = "Correct!"
-                } else {
-                    incorrectAnswers++
-                    questionText.text = "Incorrect"
+                    if (option == currentCorrectLetter) {
+                        correctAnswers++
+                        questionText.text = "Correct!"
+                        background = ContextCompat.getDrawable(this@DyslexiaTest2Activity, R.drawable.correct_background)
+                    } else {
+                        incorrectAnswers++
+                        questionText.text = "Incorrect"
+                        background = ContextCompat.getDrawable(this@DyslexiaTest2Activity, R.drawable.incorrect_background)
+                        highlightCorrectButton()
+                    }
                 }
             }
 
@@ -114,6 +116,16 @@ class DyslexiaTest2Activity : AppCompatActivity() {
     private fun disableAllButtons() {
         for (i in 0 until optionsLayout.childCount) {
             optionsLayout.getChildAt(i).isEnabled = false
+        }
+    }
+
+    private fun highlightCorrectButton() {
+        for (i in 0 until optionsLayout.childCount) {
+            val b = optionsLayout.getChildAt(i) as Button
+            if (b.text.toString() == currentCorrectLetter.toString()) {
+                b.background = ContextCompat.getDrawable(this, R.drawable.correct_background)
+                break
+            }
         }
     }
 

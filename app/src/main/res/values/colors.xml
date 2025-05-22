@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_green">#A8DF8E</color>
+    <color name="correctGreen">#C8E6C9</color>  <!-- light green -->
+    <color name="incorrectRed">#FFCDD2</color> <!-- light red -->
+
 </resources>

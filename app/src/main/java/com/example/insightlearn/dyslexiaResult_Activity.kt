@@ -41,6 +41,46 @@ class dyslexiaResultActivity : AppCompatActivity() {
 
         resultText.text = resultMessage
 
+        // Calculate prediction based on correct percentage
+        val predictionTextView = TextView(this).apply {
+            textSize = 20f
+            setTextColor(ContextCompat.getColor(context, android.R.color.black))
+            setPadding(0, 20, 0, 20)
+        }
+
+        // Calculate and display percentage + prediction
+        if (finalTotal > 0) {
+            val accuracy = (finalCorrect.toDouble() / finalTotal) * 100
+            val formattedAccuracy = String.format("%.2f", accuracy)
+
+            val prediction = when {
+                accuracy >= 90 -> "Not Dyslexic"
+                accuracy >= 75 -> "Slightly Dyslexic"
+                accuracy >= 50 -> "Normal Dyslexic"
+                accuracy >= 25 -> "Highly Dyslexic"
+                else -> "Extreme Dyslexic"
+            }
+
+            val predictionTextView = TextView(this).apply {
+                text = "Score: $formattedAccuracy%\nPrediction: $prediction"
+                textSize = 20f
+                setTextColor(ContextCompat.getColor(context, android.R.color.black))
+                textAlignment = View.TEXT_ALIGNMENT_CENTER
+                setPadding(0, 20, 0, 20)
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    gravity = android.view.Gravity.CENTER_HORIZONTAL
+                }
+            }
+
+            // Add below resultText (at position 2)
+            resultContainer.addView(predictionTextView, 2)
+        }
+
+
+
         when (currentTest) {
             1 -> {
                 nextTestButton.visibility = View.VISIBLE
