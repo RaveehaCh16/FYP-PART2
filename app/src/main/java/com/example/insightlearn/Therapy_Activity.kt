@@ -36,7 +36,6 @@ class TherapyActivity : AppCompatActivity() {
             val intent = Intent(this, DetectionActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }
+

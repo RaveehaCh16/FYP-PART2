@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/speech_result">
+
+    <GridLayout
+        android:id="@+id/buttonGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="80dp">
+
+        <Button
+            android:id="@+id/redButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#F44336" />
+
+        <Button
+            android:id="@+id/blueButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#2196F3" />
+
+        <Button
+            android:id="@+id/greenButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#4CAF50" />
+
+        <Button
+            android:id="@+id/yellowButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#FFEB3B" />
+    </GridLayout>
+
+    <include
+        android:id="@+id/roundIntroLayout"
+        layout="@layout/round_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
+</RelativeLayout>
+

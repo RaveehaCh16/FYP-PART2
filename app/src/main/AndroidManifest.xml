@@ -37,6 +37,7 @@
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".alphabetmodelActivity"/>
         <activity android:name=".testgraph"/>
+        <activity android:name=".color_pattern"/>
         <activity android:name=".lex_detect_types"/>
         <activity android:name=".SpeechTestActivity"/>
         <activity android:name=".SpeechBingoActivity"/>
@@ -46,10 +47,11 @@
         <activity android:name=".lex_speech_result"/>
         <activity android:name=".GameScreenActivity"/>
         <activity android:name=".GameRuleActivity"/>
+        <activity android:name=".GameEndActivity"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity android:name=".DyslexiaTherapy_Portals"/>
         <activity android:name=".TherapyPracticeActivity"/>
-                <activity android:name=".AlphabetLearningActivity"/>
+        <activity android:name=".AlphabetLearningActivity"/>
         <activity android:name=".LetterATracingActivity" />
         <activity android:name=".LetterBTracingActivity" />
         <activity android:name=".LetterCTracingActivity" />

@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_end">
+
+    <LinearLayout
+        android:id="@+id/navigationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="180dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Back"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:background="#2747F8" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/replayButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Replay"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:background="#2747F8" />
+    </LinearLayout>
+</RelativeLayout>
