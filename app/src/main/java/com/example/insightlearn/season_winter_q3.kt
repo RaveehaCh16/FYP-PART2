@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.insightlearn.DyslexiaTherapy_Portals
 import com.example.insightlearn.R
+import seasonstart
 
 class WinterQuestionActivity3 : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class WinterQuestionActivity3 : AppCompatActivity() {
     private lateinit var option3: Button
     private lateinit var option4: Button
     private lateinit var nextButton: Button
+    private lateinit var backButton: Button
 
     private var answerSelected = false
     private var isCorrect = false
@@ -30,15 +33,19 @@ class WinterQuestionActivity3 : AppCompatActivity() {
         option3 = findViewById(R.id.option3)
         option4 = findViewById(R.id.option4)
         nextButton = findViewById(R.id.nextButton)
+        backButton = findViewById(R.id.backButton)
 
         option1.setOnClickListener { handleAnswerSelection(option1, false) }
         option2.setOnClickListener { handleAnswerSelection(option2, false) }
         option3.setOnClickListener { handleAnswerSelection(option3, true) }
         option4.setOnClickListener { handleAnswerSelection(option4, false) }
 
+        backButton.setOnClickListener{
+            val intent= Intent(this, DyslexiaTherapy_Portals:: class.java)
+        }
         nextButton.setOnClickListener {
             if (answerSelected) {
-                val intent = Intent(this, WinterStoryActivity::class.java)
+                val intent = Intent(this, seasonstart::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please select an answer first", Toast.LENGTH_SHORT).show()
