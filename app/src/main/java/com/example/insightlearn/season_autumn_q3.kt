@@ -1,6 +1,7 @@
 package com.yourpackage.yourapp
 
 import AutumnStoryActivity
+import WinterStoryActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle

@@ -21,7 +21,7 @@ class WinterQuestionActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.winter_qs2)
+        setContentView(R.layout.winter_q2)
 
         option1 = findViewById(R.id.option1)
         option2 = findViewById(R.id.option2)
@@ -36,7 +36,7 @@ class WinterQuestionActivity2 : AppCompatActivity() {
 
         nextButton.setOnClickListener {
             if (answerSelected) {
-                val intent = Intent(this, AutumnQuestionActivity3::class.java)
+                val intent = Intent(this, WinterQuestionActivity3::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please select an answer first", Toast.LENGTH_SHORT).show()
@@ -56,7 +56,7 @@ class WinterQuestionActivity2 : AppCompatActivity() {
         } else {
             selectedButton.setBackgroundColor(Color.RED)
             option1.setBackgroundColor(Color.GREEN) // Show correct one
-            Toast.makeText(this, "Oops! Wrong Answer, the correct answer is Pumpkin", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Oops! Wrong Answer, the correct answer is Mittens", Toast.LENGTH_SHORT).show()
         }
 
         // Disable all options after selection
