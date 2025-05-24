@@ -42,6 +42,7 @@ class WinterQuestionActivity3 : AppCompatActivity() {
 
         backButton.setOnClickListener{
             val intent= Intent(this, DyslexiaTherapy_Portals:: class.java)
+            startActivity(intent)
         }
         nextButton.setOnClickListener {
             if (answerSelected) {
