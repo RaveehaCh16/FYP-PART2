@@ -90,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:text="Back"
+            android:text="Back TO PORTAL"
             android:textSize="18sp"
             android:background="@drawable/button_3d_round"/>
 
@@ -103,7 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:text="Replay"
+            android:text="play again"
             android:textSize="18sp"
             android:background="@drawable/button_3d_round"  />
     </LinearLayout>
