@@ -19,7 +19,6 @@ class color_pattern : AppCompatActivity() {
     private lateinit var introLayout: RelativeLayout
     private lateinit var introRoundText: TextView
     private val handler = Handler(Looper.getMainLooper())
-
     private var pattern = mutableListOf<Int>()
     private var userInput = mutableListOf<Int>()
     private var isUserTurn = false
