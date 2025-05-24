@@ -78,14 +78,21 @@
     <!-- Bottom Navigation Buttons -->
     <LinearLayout
         android:id="@+id/navigationLayout"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="620dp"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
-        android:translationX="80dp"
-        android:gravity="center">
+        android:gravity="center_vertical">
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Back"
+            android:textSize="18sp"
+            android:background="@drawable/button_3d_round"/>
 
         <View
             android:layout_width="16dp"
@@ -96,8 +103,8 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:text="Next"
+            android:text="Replay"
             android:textSize="18sp"
-            android:background="@drawable/button_3d_round" />
+            android:background="@drawable/button_3d_round"  />
     </LinearLayout>
 </FrameLayout>
