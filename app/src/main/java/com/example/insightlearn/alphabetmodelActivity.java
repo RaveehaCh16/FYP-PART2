@@ -74,7 +74,7 @@ public class alphabetmodelActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(alphabetmodelActivity.this, youtube_dysgraphia_therapy.class);
+                Intent intent = new Intent(alphabetmodelActivity.this, AlphabetLearningActivity.class);
                 startActivity(intent);
             }
         });
