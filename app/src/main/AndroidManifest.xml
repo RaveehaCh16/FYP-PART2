@@ -39,6 +39,10 @@
         <activity android:name=".testgraph"/>
         <activity android:name=".seasonstart" />
         <activity android:name=".SeasonRulesActivity" />
+        <activity android:name="AutumnStoryActivity"/>
+        <activity android:name="AutumnQuestionActivity"/>
+        <activity android:name="AutumnQuestionActivity2"/>
+        <activity android:name="AutumnQuestionActivity3"/>
         <activity android:name=".color_pattern"/>
         <activity android:name=".color_gamestart"/>
         <activity android:name=".ColorGameRuleActivity"/>
