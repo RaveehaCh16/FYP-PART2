@@ -1,4 +1,4 @@
-package com.yourpackage.yourapp
+package com.example.insightlearn
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.insightlearn.R
+
 
 class SummerQuestionActivity2 : AppCompatActivity() {
 

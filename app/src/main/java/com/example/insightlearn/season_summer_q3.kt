@@ -1,4 +1,4 @@
-package com.yourpackage.yourapp
+package com.example.insightlearn
 
 import SpringStoryActivity
 import SummerStoryActivity

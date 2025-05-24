@@ -1,7 +1,6 @@
-package com.yourpackage.yourapp
+package com.example.insightlearn
 
-import AutumnStoryActivity
-import WinterStoryActivity
+
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -10,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.insightlearn.DyslexiaTherapy_Portals
 import com.example.insightlearn.R
-import seasonstart
+
 
 class WinterQuestionActivity3 : AppCompatActivity() {
 
