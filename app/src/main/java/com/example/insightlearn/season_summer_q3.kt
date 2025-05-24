@@ -1,5 +1,7 @@
 package com.yourpackage.yourapp
 
+import SpringStoryActivity
+import SummerStoryActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
