@@ -23,7 +23,7 @@ class GameEndActivity : AppCompatActivity() {
 
         replayButton.setOnClickListener {
             // Restart the color_pattern game
-            val intent = Intent(this, color_pattern ::class.java)
+            val intent = Intent(this, color_gamestart ::class.java)
             startActivity(intent)
             finish()
         }

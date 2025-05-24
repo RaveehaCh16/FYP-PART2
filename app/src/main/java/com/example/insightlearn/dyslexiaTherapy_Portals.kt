@@ -25,7 +25,7 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
             startActivity(intent)
         }
         colorButton.setOnClickListener {
-            val intent = Intent(this, color_pattern::class.java)
+            val intent = Intent(this, color_gamestart::class.java)
             startActivity(intent)
         }
 

@@ -46,7 +46,10 @@ class color_pattern : AppCompatActivity() {
             }
         }
 
-        showRoundIntro(round)  // Start by showing round 1 intro
+        // Ensure the game starts with a random color
+        pattern.clear()
+        pattern.add((0..3).random())
+        showRoundIntro(round)
     }
 
     private fun startRound() {
@@ -58,11 +61,12 @@ class color_pattern : AppCompatActivity() {
         isUserTurn = false
         userInput.clear()
 
-        // Add next color in pattern and show pattern after round intro
-        val nextColor = (0..3).random()
-        pattern.add(nextColor)
+        // Generate a completely new random pattern of length = round
+        pattern = MutableList(round) { (0..3).random() }
+
         showPattern()
     }
+
 
     private fun showRoundIntro(round: Int) {
         introRoundText.text = "$round"
@@ -83,7 +87,7 @@ class color_pattern : AppCompatActivity() {
                     startRound()
                 }
             })
-        }, 1500) // Show intro for 1.5 seconds before fade out
+        }, 1500)
     }
 
     private fun showPattern() {
@@ -127,7 +131,6 @@ class color_pattern : AppCompatActivity() {
             }
         }
     }
-
 
     private fun List<Int>.startsWith(other: List<Int>): Boolean {
         if (other.size > this.size) return false

@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/color_gamerule">
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:text="Start"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:background="#2747F8"
+        android:layout_marginTop="500dp"
+        android:translationX="130dp" />
+
+</RelativeLayout>
