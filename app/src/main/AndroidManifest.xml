@@ -37,6 +37,8 @@
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".alphabetmodelActivity"/>
         <activity android:name=".testgraph"/>
+        <activity android:name=".seasonstart" />
+        <activity android:name=".SeasonRulesActivity" />
         <activity android:name=".color_pattern"/>
         <activity android:name=".color_gamestart"/>
         <activity android:name=".ColorGameRuleActivity"/>
