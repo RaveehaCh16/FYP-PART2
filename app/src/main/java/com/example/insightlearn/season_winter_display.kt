@@ -5,9 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.insightlearn.R
-import com.yourpackage.yourapp.SpringQuestionActivity
-import com.yourpackage.yourapp.SummerQuestionActivity
-import com.yourpackage.yourapp.WinterQuestionActivity
+
 
 class WinterStoryActivity : AppCompatActivity() {
 

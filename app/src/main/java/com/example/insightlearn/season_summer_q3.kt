@@ -1,7 +1,5 @@
 package com.example.insightlearn
 
-import SpringStoryActivity
-import SummerStoryActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
