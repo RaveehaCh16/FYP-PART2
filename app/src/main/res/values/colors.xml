@@ -5,5 +5,6 @@
     <color name="light_green">#A8DF8E</color>
     <color name="correctGreen">#C8E6C9</color>  <!-- light green -->
     <color name="incorrectRed">#FFCDD2</color> <!-- light red -->
+    <color name="green">#4CAF50</color>
 
 </resources>
