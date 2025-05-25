@@ -99,6 +99,14 @@
         <activity android:name=".LetterXTracingActivity" />
         <activity android:name=".LetterYTracingActivity" />
         <activity android:name=".LetterZTracingActivity" />
+        <activity android:name=".LipTrillActivity" />
+        <activity android:name=".FishPoutActivity" />
+        <activity android:name=".OPositionActivity" />
+        <activity android:name=".LipSmackingActivity" />
+        <activity android:name=".PaperHoldingActivity" />
+        <activity android:name=".PaperHoldingOPositionActivity" />
+        <activity android:name=".SuckBlowActivity" />
+        <activity android:name=".FishPoutSmackingActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
