@@ -13,10 +13,10 @@
         android:src="@drawable/season_homepage" />
     <Button
         android:id="@+id/getStarted"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="550dp"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="520dp"
         android:layout_centerInParent="true"
-        android:translationX="200dp"
+        android:translationX="00dp"
         android:background="@android:color/transparent" />
 </FrameLayout>
