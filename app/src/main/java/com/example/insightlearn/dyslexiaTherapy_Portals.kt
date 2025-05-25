@@ -14,7 +14,8 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
         val practiceButton = findViewById<Button>(R.id.memButton)
         val colorButton = findViewById<Button>(R.id.colorButton)
         val backButton = findViewById<Button>(R.id.backButton)
-
+        val nextDayButton= findViewById<Button>(R.id.nextDayButton)
+        val seasonButton= findViewById<Button>(R.id.seasonButton)
         gameButton.setOnClickListener {
             val intent = Intent(this, GameScreenActivity::class.java)
             startActivity(intent)
@@ -26,6 +27,10 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
         }
         colorButton.setOnClickListener {
             val intent = Intent(this, color_gamestart::class.java)
+            startActivity(intent)
+        }
+        seasonButton.setOnClickListener {
+            val intent = Intent(this, seasonstart::class.java)
             startActivity(intent)
         }
 
