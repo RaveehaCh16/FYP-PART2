@@ -51,6 +51,10 @@
         <activity android:name="SummerQuestionActivity"/>
         <activity android:name="SummerQuestionActivity2"/>
         <activity android:name="SummerQuestionActivity3"/>
+        <activity android:name="WinterStoryActivity"/>
+        <activity android:name="WinterQuestionActivity"/>
+        <activity android:name="WinterQuestionActivity2"/>
+        <activity android:name="WinterQuestionActivity3"/>
         <activity android:name=".color_pattern"/>
         <activity android:name=".color_gamestart"/>
         <activity android:name=".ColorGameRuleActivity"/>
