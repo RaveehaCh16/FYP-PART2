@@ -27,7 +27,7 @@ class TherapyActivity : AppCompatActivity() {
         }
 
         dysgraphiaButton.setOnClickListener {
-            startActivity(Intent(this, youtube_dysgraphia_therapy::class.java))
+            startActivity(Intent(this, AlphabetLearningActivity::class.java))
         }
 
         lipTrillButton.setOnClickListener {
