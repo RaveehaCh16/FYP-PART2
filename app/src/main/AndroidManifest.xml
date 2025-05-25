@@ -68,6 +68,7 @@
         <activity android:name=".GameScreenActivity"/>
         <activity android:name=".GameRuleActivity"/>
         <activity android:name=".GameEndActivity"/>
+        <activity android:name=".WhatComesNextActivity"/>
         <activity android:name=".youtube_dysgraphia_therapy"/>
         <activity android:name=".DyslexiaTherapy_Portals"/>
         <activity android:name=".TherapyPracticeActivity"/>

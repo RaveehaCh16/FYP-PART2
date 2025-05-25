@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background5"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today is TUESDAY. What comes next?"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/optionButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Monday"
+        android:textSize="20sp"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/optionButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wednesday"
+        android:textSize="20sp"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/optionButton3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friday"
+        android:textSize="20sp"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:id="@+id/feedbackTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp" />
+
+    <!-- ✅ Back to Portal Button -->
+    <Button
+        android:id="@+id/backToPortalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Portal"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white" />
+</LinearLayout>

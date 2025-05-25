@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-
 class DyslexiaTherapy_Portals : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +13,6 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
         val gameButton = findViewById<Button>(R.id.proButton)
         val practiceButton = findViewById<Button>(R.id.memButton)
         val colorButton = findViewById<Button>(R.id.colorButton)
-        val seasonButton = findViewById<Button>(R.id.seasonButton)
         val backButton = findViewById<Button>(R.id.backButton)
 
         gameButton.setOnClickListener {
@@ -28,10 +26,6 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
         }
         colorButton.setOnClickListener {
             val intent = Intent(this, color_gamestart::class.java)
-            startActivity(intent)
-        }
-        seasonButton.setOnClickListener {
-            val intent = Intent(this, seasonstart::class.java)
             startActivity(intent)
         }
 
