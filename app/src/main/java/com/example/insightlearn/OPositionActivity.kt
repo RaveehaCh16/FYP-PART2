@@ -3,25 +3,24 @@ package com.example.insightlearn
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
-import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 
-class OPositionActivity : AppCompatActivity() {
+class LipSmackingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_o_position)
+        setContentView(R.layout.activity_lip_smacking)
 
-        val videoView: VideoView = findViewById(R.id.oPositionVideo)
+        val videoView = findViewById<VideoView>(R.id.lipSmackingVideoView)
         val backButton = findViewById<Button>(R.id.backButton)
 
-        val videoPath = "android.resource://" + packageName + "/" + R.raw.oposition
-        videoView.setVideoURI(Uri.parse(videoPath))
-
-        val mediaController = MediaController(this)
-        mediaController.setAnchorView(videoView)
-        videoView.setMediaController(mediaController)
-
+        // Load video from raw resource
+        val videoUri = Uri.parse("android.resource://$packageName/${R.raw.lipsmack}")
+        videoView.setVideoURI(videoUri)
         videoView.start()
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 }
