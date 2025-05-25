@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/speech_memory">
+    android:background="@drawable/color_back2">
 
     <Button
         android:id="@+id/proButton"
