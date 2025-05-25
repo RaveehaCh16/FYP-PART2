@@ -43,6 +43,10 @@
         <activity android:name="AutumnQuestionActivity"/>
         <activity android:name="AutumnQuestionActivity2"/>
         <activity android:name="AutumnQuestionActivity3"/>
+        <activity android:name="SpringStoryActivity"/>
+        <activity android:name="SpringQuestionActivity"/>
+        <activity android:name="SpringQuestionActivity2"/>
+        <activity android:name="SpringQuestionActivity3"/>
         <activity android:name=".color_pattern"/>
         <activity android:name=".color_gamestart"/>
         <activity android:name=".ColorGameRuleActivity"/>
