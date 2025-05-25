@@ -47,8 +47,6 @@
         android:textColor="#000000" />
 
 
-
-
     <!-- Horizontal Scroll View for Daily Exercises -->
     <HorizontalScrollView
         android:id="@+id/dailyExerciseScroll"
