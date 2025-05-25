@@ -76,6 +76,7 @@ class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             feedbackTextView.text = ""
             optionButtons.forEach { it.visibility = View.GONE }
             backToPortalButton.visibility = View.VISIBLE
+            backButton.visibility = View.GONE // <-- Hide back button on result screen
             speak("Great job! You completed all days!")
             return
         }
