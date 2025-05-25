@@ -1,13 +1,14 @@
 package com.example.insightlearn
 
-
+import android.speech.tts.TextToSpeech
+import android.widget.TextView
+import java.util.*
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.insightlearn.DyslexiaTherapy_Portals
 import com.example.insightlearn.R
 
 
@@ -19,6 +20,7 @@ class WinterQuestionActivity3 : AppCompatActivity() {
     private lateinit var option4: Button
     private lateinit var nextButton: Button
     private lateinit var backButton: Button
+    private lateinit var tts: TextToSpeech
 
     private var answerSelected = false
     private var isCorrect = false
@@ -51,7 +53,25 @@ class WinterQuestionActivity3 : AppCompatActivity() {
                 Toast.makeText(this, "Please select an answer first", Toast.LENGTH_SHORT).show()
             }
         }
+        val titleText = findViewById<TextView>(R.id.titleText)
+
+        tts = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                tts.language = Locale.US
+                tts.setSpeechRate(0.5f)  // 👈 0.5x speed
+                tts.speak(titleText.text.toString(), TextToSpeech.QUEUE_FLUSH, null, null)
+            }
+        }
+
     }
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
+    }
+
 
     private fun handleAnswerSelection(selectedButton: Button, correct: Boolean) {
         if (answerSelected) return
