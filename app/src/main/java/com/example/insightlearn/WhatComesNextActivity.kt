@@ -17,6 +17,7 @@ class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var feedbackTextView: TextView
     private lateinit var optionButtons: List<Button>
     private lateinit var backToPortalButton: Button
+    private lateinit var backButton: Button
 
     private val daysOfWeek = listOf(
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -44,10 +45,14 @@ class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         backToPortalButton = findViewById(R.id.backToPortalButton)
         backToPortalButton.visibility = View.GONE
-
         backToPortalButton.setOnClickListener {
             startActivity(Intent(this, DyslexiaTherapy_Portals::class.java))
             finish()
+        }
+
+        backButton = findViewById(R.id.backButton)
+        backButton.setOnClickListener {
+            finish() // Go back to previous screen
         }
 
         shuffledDays = daysOfWeek.shuffled().toMutableList()
@@ -67,7 +72,6 @@ class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setupQuestion() {
         if (currentIndex >= shuffledDays.size) {
-            // All questions done
             questionTextView.text = "Great job! You completed all days!"
             feedbackTextView.text = ""
             optionButtons.forEach { it.visibility = View.GONE }
@@ -111,7 +115,7 @@ class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             feedbackTextView.text = "❌ $message"
             feedbackTextView.setTextColor(Color.RED)
             speak(message)
-            return // Don't proceed to next question
+            return
         }
 
         feedbackTextView.postDelayed({
