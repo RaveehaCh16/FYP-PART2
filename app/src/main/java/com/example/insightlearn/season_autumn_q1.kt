@@ -6,18 +6,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.insightlearn.R
 
 class AutumnQuestionActivity : AppCompatActivity() {
 
     private lateinit var option1: Button
     private lateinit var option2: Button
-    private lateinit var option3: Button
+    private lateinit var option3: Button // Correct answer
     private lateinit var option4: Button
     private lateinit var nextButton: Button
 
     private var answerSelected = false
-    private var isCorrect = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +46,15 @@ class AutumnQuestionActivity : AppCompatActivity() {
         if (answerSelected) return
 
         answerSelected = true
-        isCorrect = correct
 
         if (correct) {
-            selectedButton.setBackgroundColor(Color.GREEN)
+            selectedButton.text = "✔" // Tick symbol
             Toast.makeText(this, "Hurrah! Correct answer", Toast.LENGTH_SHORT).show()
         } else {
-            selectedButton.setBackgroundColor(Color.RED)
-            option1.setBackgroundColor(Color.GREEN) // Show correct one
-            Toast.makeText(this, "Oops! Wrong Answer, the correct answer is Autumn", Toast.LENGTH_SHORT).show()
+            selectedButton.text = "❌" // Cross symbol
+            Toast.makeText(this, "Oops! Wrong answer", Toast.LENGTH_SHORT).show()
         }
 
-        // Disable all options after selection
         disableAllOptions()
     }
 

@@ -33,7 +33,10 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
             val intent = Intent(this, seasonstart::class.java)
             startActivity(intent)
         }
-
+        nextDayButton.setOnClickListener {
+            val intent = Intent(this, WhatComesNextActivity::class.java)
+            startActivity(intent)
+        }
         backButton.setOnClickListener {
             val intent = Intent(this, TherapyActivity::class.java)
             startActivity(intent)

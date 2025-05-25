@@ -48,18 +48,15 @@ class WinterQuestionActivity : AppCompatActivity() {
         if (answerSelected) return
 
         answerSelected = true
-        isCorrect = correct
 
         if (correct) {
-            selectedButton.setBackgroundColor(Color.GREEN)
+            selectedButton.text = "✔" // Tick symbol
             Toast.makeText(this, "Hurrah! Correct answer", Toast.LENGTH_SHORT).show()
         } else {
-            selectedButton.setBackgroundColor(Color.RED)
-            option1.setBackgroundColor(Color.GREEN) // Show correct one
-            Toast.makeText(this, "Oops! Wrong Answer, the correct answer is Carrot", Toast.LENGTH_SHORT).show()
+            selectedButton.text = "❌" // Cross symbol
+            Toast.makeText(this, "Oops! Wrong answer", Toast.LENGTH_SHORT).show()
         }
 
-        // Disable all options after selection
         disableAllOptions()
     }
 
