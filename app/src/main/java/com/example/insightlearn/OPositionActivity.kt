@@ -6,19 +6,20 @@ import android.widget.Button
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 
-class LipSmackingActivity : AppCompatActivity() {
+class OPositionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lip_smacking)
+        setContentView(R.layout.activity_o_position)
 
-        val videoView = findViewById<VideoView>(R.id.lipSmackingVideoView)
+        val videoView = findViewById<VideoView>(R.id.oPositionVideo)
         val backButton = findViewById<Button>(R.id.backButton)
 
         // Load video from raw resource
-        val videoUri = Uri.parse("android.resource://$packageName/${R.raw.lipsmack}")
+        val videoUri = Uri.parse("android.resource://$packageName/${R.raw.oposition}")
         videoView.setVideoURI(videoUri)
         videoView.start()
 
+        // Back button closes the activity
         backButton.setOnClickListener {
             finish()
         }
