@@ -15,7 +15,7 @@ class SpringStoryActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val storyText = """
         It’s spring! Aana puts on her yellow shirt.
         She sees pretty tulips and hears birds singing.
-        She picks a daisy for her friend and spots a bunny hopping in the grass!
+        She picks a daisy for her friend and spots a rabbit on the ground!
     """.trimIndent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
