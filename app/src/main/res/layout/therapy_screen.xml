@@ -2,54 +2,189 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back02">
-
-
+    android:background="@drawable/back01">
 
     <!-- Detection Button -->
     <Button
         android:id="@+id/dyslexiaButton"
-        android:layout_width="300dp"
-        android:layout_height="230dp"
-        android:layout_below="@id/titleButton"
+        android:layout_width="280dp"
+        android:layout_height="90dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/round_form"
-        android:drawableTop="@drawable/dyslexia"
-        android:paddingTop="20dp"
-        android:text="@string/dyslexia"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/button_3d_round"
+        android:paddingTop="10dp"
+        android:text="DYSLEXIA"
         android:textColor="#000000"
         android:textSize="40sp"
         android:textStyle="bold" />
 
-    <!-- Therapy Button -->
-
-    <!-- Settings Icon -->
+    <!-- Dysgraphia Button -->
     <Button
         android:id="@+id/dysgraphiaButton"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="280dp"
+        android:layout_height="90dp"
         android:layout_below="@id/dyslexiaButton"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/round_form"
-        android:drawableTop="@drawable/dysgraphia"
-        android:paddingTop="5dp"
-        android:text="@string/dysgraphia"
+        android:background="@drawable/button_3d_round"
+        android:paddingTop="10dp"
+        android:text="DYSGRAPHIA"
         android:textSize="40sp"
         android:textColor="#000000"
         android:textStyle="bold" />
 
+    <!-- Daily Exercise Title -->
+    <TextView
+        android:id="@+id/dailyExerciseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dysgraphiaButton"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:text="Daily Exercises"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
 
+
+
+
+    <!-- Horizontal Scroll View for Daily Exercises -->
+    <HorizontalScrollView
+        android:id="@+id/dailyExerciseScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dailyExerciseTitle"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <Button
+                android:id="@+id/lipTrillButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Lip Trills"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+
+            <Button
+                android:id="@+id/fishPoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Fish Pout"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+
+            <Button
+                android:id="@+id/oPositionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="O Position"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+
+            <Button
+                android:id="@+id/lipSmackingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Lip Smacking"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+
+            <Button
+                android:id="@+id/paperHoldingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Paper Holding"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+            <Button
+                android:id="@+id/paperHoldingOPositionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Paper Holding O Position"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+            <Button
+                android:id="@+id/suckBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Suck and Blow"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+            <Button
+                android:id="@+id/fishPoutSmackingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:minWidth="120dp"
+                android:text="Fish Pout Smacking"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_3d_round" />
+
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Back Button Layout -->
+    <LinearLayout
+        android:id="@+id/navigationLayout"
+        android:layout_width="260dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp"
+        android:gravity="center_vertical">
+
+
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Back"
+            android:textSize="18sp"
+            android:background="@drawable/button_3d_round" />
+    </LinearLayout>
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
