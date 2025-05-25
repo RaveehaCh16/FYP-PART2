@@ -15,7 +15,7 @@
     <!-- Question Text -->
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="350dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:text="What was the color of the snowman’s hat?"
         android:background="#FFF5E5"

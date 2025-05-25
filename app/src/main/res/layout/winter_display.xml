@@ -20,7 +20,7 @@
         android:text="❄️ Aana's Snowy Day"
         android:textColor="#8B4513"
         android:background="#FFF5E5"
-        android:translationX="45dp"
+        android:translationX="30dp"
         android:layout_marginTop="50dp"
         android:textSize="28sp"
         android:padding="16dp"
