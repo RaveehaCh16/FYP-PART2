@@ -11,7 +11,7 @@
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:background="#2747F8"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="620dp"
         android:translationX="130dp" />
 
 </RelativeLayout>

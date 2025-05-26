@@ -27,20 +27,26 @@ class WinterStoryActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             tts.language = Locale.US
-            tts.setSpeechRate(0.5f)  // Slow speech
+            tts.setSpeechRate(0.5f)
 
-            tts.speak(storyText, TextToSpeech.QUEUE_FLUSH, null, "springStory")
+            tts.setOnUtteranceProgressListener(object : android.speech.tts.UtteranceProgressListener() {
+                override fun onStart(utteranceId: String?) {}
 
-            val normalDuration = estimateSpeechDuration(storyText)
-            val adjustedDuration = (normalDuration * 2) // Because speed is 0.5x, duration doubles
+                override fun onDone(utteranceId: String?) {
+                    runOnUiThread {
+                        val intent = Intent(this@WinterStoryActivity, WinterQuestionActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this, WinterQuestionActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, adjustedDuration + 250L)  // wait 0.5s after speech ends
+                override fun onError(utteranceId: String?) {}
+            })
+
+            tts.speak(storyText, TextToSpeech.QUEUE_FLUSH, null, "summerStory")
         }
     }
+
 
 
 

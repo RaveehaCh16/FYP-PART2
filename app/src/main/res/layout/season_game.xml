@@ -17,8 +17,8 @@
         android:text="Let's  Start ->"
         android:textSize="25dp"
         android:layout_height="70dp"
-        android:layout_marginTop="620dp"
+        android:layout_marginTop="630dp"
         android:layout_centerInParent="true"
-        android:translationX="120dp"
+        android:translationX="200dp"
         android:background="@drawable/button_3d_round" />
 </FrameLayout>
