@@ -1,134 +1,164 @@
 package com.example.insightlearn
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
+import android.os.Handler
+import android.os.Looper
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Locale
-import kotlin.random.Random
+import android.graphics.drawable.GradientDrawable
 
-class WhatComesNextActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+
+class WhatComesNextActivity : AppCompatActivity() {
+
+    private lateinit var mainContent: ScrollView
+    private lateinit var introLayout: LinearLayout
+    private lateinit var daysContainer: LinearLayout
 
     private lateinit var questionTextView: TextView
+    private lateinit var optionButton1: Button
+    private lateinit var optionButton2: Button
+    private lateinit var optionButton3: Button
     private lateinit var feedbackTextView: TextView
-    private lateinit var optionButtons: List<Button>
     private lateinit var backToPortalButton: Button
-    private lateinit var backButton: Button
 
-    private val daysOfWeek = listOf(
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-    )
-    private lateinit var shuffledDays: MutableList<String>
-    private var currentIndex = 0
-    private var correctAnswer = ""
-
-    private lateinit var tts: TextToSpeech
+    private val daysOfWeek = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    private val askedIndices = mutableSetOf<Int>()
+    private var currentDayIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_what_comes_next)
 
-        tts = TextToSpeech(this, this)
+        introLayout = findViewById(R.id.introLayout)
+        daysContainer = findViewById(R.id.daysContainer)
+        mainContent = findViewById(R.id.mainContent)
 
         questionTextView = findViewById(R.id.questionTextView)
+        optionButton1 = findViewById(R.id.optionButton1)
+        optionButton2 = findViewById(R.id.optionButton2)
+        optionButton3 = findViewById(R.id.optionButton3)
         feedbackTextView = findViewById(R.id.feedbackTextView)
-
-        optionButtons = listOf(
-            findViewById(R.id.optionButton1),
-            findViewById(R.id.optionButton2),
-            findViewById(R.id.optionButton3)
-        )
-
         backToPortalButton = findViewById(R.id.backToPortalButton)
-        backToPortalButton.visibility = View.GONE
+
+        displayDaysSequence()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            introLayout.visibility = View.GONE
+            mainContent.visibility = View.VISIBLE
+            showNextQuestion()
+        }, 10000)
+
+        optionButton1.setOnClickListener { checkAnswer(optionButton1.text.toString()) }
+        optionButton2.setOnClickListener { checkAnswer(optionButton2.text.toString()) }
+        optionButton3.setOnClickListener { checkAnswer(optionButton3.text.toString()) }
+
         backToPortalButton.setOnClickListener {
-            startActivity(Intent(this, DyslexiaTherapy_Portals::class.java))
             finish()
         }
+    }
 
-        backButton = findViewById(R.id.backButton)
-        backButton.setOnClickListener {
-            finish() // Go back to previous screen
+    private fun displayDaysSequence() {
+        val colors = listOf(
+            "#FFCDD2",  // light red
+            "#F8BBD0",  // pink
+            "#E1BEE7",  // purple
+            "#D1C4E9",  // deep purple
+            "#BBDEFB",  // blue
+            "#C8E6C9",  // green
+            "#FFF9C4"   // yellow
+        )
+
+        daysOfWeek.forEachIndexed { index, day ->
+            val dayBox = TextView(this).apply {
+                text = day
+                textSize = 26f
+                setTextColor(Color.BLACK)
+                setPadding(40, 40, 40, 40)
+                textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(40, 20, 40, 20)
+                }
+
+                // Set colorful background dynamically with rounded corners
+                background = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    cornerRadius = 40f
+                    setColor(Color.parseColor(colors[index % colors.size]))
+                }
+            }
+            daysContainer.addView(dayBox)
         }
-
-        shuffledDays = daysOfWeek.shuffled().toMutableList()
-        setupQuestion()
     }
 
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            tts.language = Locale.US
-            tts.setSpeechRate(0.9f)
-        }
+
+
+    private fun TextView.setMargins(left: Int, top: Int, right: Int, bottom: Int) {
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.setMargins(left, top, right, bottom)
+        layoutParams = params
     }
 
-    private fun speak(text: String) {
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
-    }
-
-    private fun setupQuestion() {
-        if (currentIndex >= shuffledDays.size) {
-            questionTextView.text = "Great job! You completed all days!"
-            feedbackTextView.text = ""
-            optionButtons.forEach { it.visibility = View.GONE }
+    private fun showNextQuestion() {
+        if (askedIndices.size >= daysOfWeek.size - 1) {
+            questionTextView.visibility = View.GONE
+            optionButton1.visibility = View.GONE
+            optionButton2.visibility = View.GONE
+            optionButton3.visibility = View.GONE
+            feedbackTextView.visibility = View.GONE
             backToPortalButton.visibility = View.VISIBLE
-            backButton.visibility = View.GONE // <-- Hide back button on result screen
-            speak("Great job! You completed all days!")
             return
         }
 
+        do {
+            currentDayIndex = (0 until daysOfWeek.size - 1).random()
+        } while (askedIndices.contains(currentDayIndex))
+
+        askedIndices.add(currentDayIndex)
+
+        val today = daysOfWeek[currentDayIndex]
+        val correctAnswer = daysOfWeek[currentDayIndex + 1]
+
+        questionTextView.text = "What comes after $today?"
         feedbackTextView.text = ""
-        val currentDay = shuffledDays[currentIndex]
-        val dayIndex = daysOfWeek.indexOf(currentDay)
-        correctAnswer = daysOfWeek[(dayIndex + 1) % daysOfWeek.size]
 
-        val questionText = "Today is $currentDay. What comes next?"
-        questionTextView.text = questionText
-        speak(questionText)
-
-        val wrongOptions = daysOfWeek.filter { it != correctAnswer }.shuffled().take(2)
-        val allOptions = (wrongOptions + correctAnswer).shuffled()
-
-        for (i in optionButtons.indices) {
-            optionButtons[i].visibility = View.VISIBLE
-            optionButtons[i].text = allOptions[i]
-            optionButtons[i].setBackgroundColor(Color.parseColor("#4CAF50")) // green
-            optionButtons[i].setTextColor(Color.WHITE)
-            optionButtons[i].setOnClickListener {
-                checkAnswer(optionButtons[i].text.toString())
+        val options = mutableListOf(correctAnswer)
+        while (options.size < 3) {
+            val randomDay = daysOfWeek.random()
+            if (randomDay != correctAnswer && !options.contains(randomDay)) {
+                options.add(randomDay)
             }
         }
+
+        options.shuffle()
+
+        optionButton1.text = options[0]
+        optionButton2.text = options[1]
+        optionButton3.text = options[2]
+
+        optionButton1.visibility = View.VISIBLE
+        optionButton2.visibility = View.VISIBLE
+        optionButton3.visibility = View.VISIBLE
+        questionTextView.visibility = View.VISIBLE
     }
 
-    private fun checkAnswer(selected: String) {
-        if (selected == correctAnswer) {
-            val message = "That's right! $correctAnswer comes next!"
-            feedbackTextView.text = "✅ $message"
-            feedbackTextView.setTextColor(Color.parseColor("#2E7D32"))
-            speak(message)
-            currentIndex++
+    private fun checkAnswer(selectedAnswer: String) {
+        val correctAnswer = daysOfWeek[currentDayIndex + 1]
+        if (selectedAnswer == correctAnswer) {
+            feedbackTextView.text = "✅ Correct!"
+            Handler(Looper.getMainLooper()).postDelayed({
+                showNextQuestion()
+            }, 1000)
         } else {
-            val message = "Oops! Try again."
-            feedbackTextView.text = "❌ $message"
-            feedbackTextView.setTextColor(Color.RED)
-            speak(message)
-            return
+            feedbackTextView.text = "❌ Incorrect!"
         }
-
-        feedbackTextView.postDelayed({
-            setupQuestion()
-        }, 2000)
-    }
-
-    override fun onDestroy() {
-        if (::tts.isInitialized) {
-            tts.stop()
-            tts.shutdown()
-        }
-        super.onDestroy()
     }
 }

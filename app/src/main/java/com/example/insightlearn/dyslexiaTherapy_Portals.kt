@@ -34,7 +34,7 @@ class DyslexiaTherapy_Portals : AppCompatActivity() {
             startActivity(intent)
         }
         nextDayButton.setOnClickListener {
-            val intent = Intent(this, WhatComesNextActivity::class.java)
+            val intent = Intent(this, DayHop_Game::class.java)
             startActivity(intent)
         }
         backButton.setOnClickListener {
