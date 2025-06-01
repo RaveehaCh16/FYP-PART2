@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.*
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.drawable.GradientDrawable
 
@@ -55,6 +56,8 @@ class WhatComesNextActivity : AppCompatActivity() {
         optionButton3.setOnClickListener { checkAnswer(optionButton3.text.toString()) }
 
         backToPortalButton.setOnClickListener {
+            val intent = Intent(this, DyslexiaTherapy_Portals::class.java)
+            startActivity(intent)
             finish()
         }
     }
