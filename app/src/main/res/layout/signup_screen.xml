@@ -22,7 +22,7 @@
         android:layout_height="460dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/round_form"
+        android:background="#C4A484"
         android:elevation="80dp"
         android:orientation="vertical"
         android:paddingTop="0dp">
